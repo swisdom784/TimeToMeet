@@ -5,6 +5,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -20,7 +21,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 public class MakeRoomActivity extends AppCompatActivity {
@@ -59,7 +65,7 @@ public class MakeRoomActivity extends AppCompatActivity {
                     }
                 }
             });
-    ActivityResultLauncher<Intent> dateActivityResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+    ActivityResultLauncher<Intent> date1ActivityResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
@@ -67,11 +73,27 @@ public class MakeRoomActivity extends AppCompatActivity {
                         int year = result.getData().getIntExtra("year",0);
                         int month = result.getData().getIntExtra("month",0);
                         int day = result.getData().getIntExtra("day",0);
-                        TextView returnText = findViewById(R.id.datetext_btn);
+                        TextView returnText = findViewById(R.id.datetext_btn1);
                         returnText.setText(new StringBuilder().append(year).append("년 ").append(month).append("월 ").append(day).append("일"));
-                        days.put("year",year);
-                        days.put("month",month);
-                        days.put("day",day);
+                        days.put("startyear",year);
+                        days.put("startmonth",month);
+                        days.put("startday",day);
+                    }
+                }
+            });
+    ActivityResultLauncher<Intent> date2ActivityResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == 1) {
+                        int year = result.getData().getIntExtra("year",0);
+                        int month = result.getData().getIntExtra("month",0);
+                        int day = result.getData().getIntExtra("day",0);
+                        TextView returnText = findViewById(R.id.datetext_btn2);
+                        returnText.setText(new StringBuilder().append(year).append("년 ").append(month).append("월 ").append(day).append("일"));
+                        days.put("endyear",year);
+                        days.put("endmonth",month);
+                        days.put("endday",day);
                     }
                 }
             });
@@ -101,14 +123,23 @@ public class MakeRoomActivity extends AppCompatActivity {
         makebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String,String> s = new HashMap<>();
-                s.put("1",username);
+                List<Integer> weight = new ArrayList<>();
+                List<Integer> sum = new ArrayList<>();
+                for(int i=0;i<(days.get("endday")-days.get("startday")+1)*(time.get("endhour")-time.get("starthour")+1);i++) {
+                    weight.add(0);
+                    sum.add(0);
+                }
+
+                Map<String,Object> s = new HashMap<>();
+                s.put(username,weight);
+
                 r.setname(room.getText().toString());
                 r.setPassword(password.getText().toString());
                 r.setOwner(username);
                 r.setGuest(s);
                 r.setDay(days);
                 r.setTime(time);
+                r.setSum(sum);
                 mdatabase.setValue(room_num[0]+1);
                 mdatabase = FirebaseDatabase.getInstance().getReference("room");
                 mdatabase.child(String.valueOf(room_num[0]+1)).setValue(r);
@@ -116,21 +147,22 @@ public class MakeRoomActivity extends AppCompatActivity {
             }
         });
     }//onCreate
-    public void clicktimeBtn1(View v){
-        //Toast.makeText(this,"button clicked", Toast.LENGTH_LONG);
+    public void clickstartdateBtn(View v){
+        Intent datepickIntent = new Intent(getApplicationContext(), date_picker.class);
+        date1ActivityResult.launch(datepickIntent);
+    }
+    public void clickenddateBtn(View v){
+        Intent datepickIntent = new Intent(getApplicationContext(), date_picker.class);
+        date2ActivityResult.launch(datepickIntent);
+    }
 
+    public void clicktimeBtn1(View v){
         Intent timepickIntent = new Intent(getApplicationContext(), time_picker.class);
         time1ActivityResult.launch(timepickIntent);
     }
     public void clicktimeBtn2(View v){
-        //Toast.makeText(this,"button clicked", Toast.LENGTH_LONG);
-
         Intent timepickIntent = new Intent(getApplicationContext(), time_picker.class);
         time2ActivityResult.launch(timepickIntent);
     }
 
-    public void clickdateBtn(View v){
-        Intent datepickIntent = new Intent(getApplicationContext(), date_picker.class);
-        dateActivityResult.launch(datepickIntent);
-    }
 }

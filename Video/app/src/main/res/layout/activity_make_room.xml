@@ -37,14 +37,24 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/datepicker_btn"
+            android:id="@+id/start_datepicker_btn"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pick the Date"
+            android:text="Start Date"
             android:clickable="true"
-            android:onClick="clickdateBtn"
+            android:onClick="clickstartdateBtn"
             android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/end_datepicker_btn"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="End Date"
+            android:clickable="true"
+            android:onClick="clickenddateBtn"
+            android:layout_gravity="center"/>
+
         <Button
             android:id="@+id/timepicker_btn1"
             style="@style/Widget.AppCompat.Button"
@@ -64,7 +74,13 @@
             android:onClick="clicktimeBtn2"
             android:layout_gravity="center"/>
         <TextView
-            android:id="@+id/datetext_btn"
+            android:id="@+id/datetext_btn1"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:text="date"/>
+        <TextView
+            android:id="@+id/datetext_btn2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center"
