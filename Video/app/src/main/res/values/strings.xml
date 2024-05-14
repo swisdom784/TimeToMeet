@@ -1,21 +1,9 @@
 <resources>
     <string name="app_name">TimetoMeet</string>
-    <string name="title1">분수대</string>
-    <string name="place1">예술의 전당</string>
-    <string name="time1">00:00:12</string>
+
     <string-array name="recurrence">
         <item>Every week</item>
         <item>Every odd week</item>
         <item>Every even week</item>
     </string-array>
-
-    <string name="default_web_client_id" translatable="false">454676400645-7d5lbdkmv71h4gusoutaio92852h7iha.apps.googleusercontent.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">454676400645</string>
-    <string name="google_api_key" translatable="false">AIzaSyD0-r1SEmIkd8LjsCuwNpmtZCQzc2W5fDI</string>
-    <string name="google_app_id" translatable="false">1:454676400645:android:d7b97f87e23e71ec816a6c</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD0-r1SEmIkd8LjsCuwNpmtZCQzc2W5fDI</string>
-    <string name="google_storage_bucket" translatable="false">team-7122e.appspot.com</string>
-    <string name="project_id" translatable="false">team-7122e</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
