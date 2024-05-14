@@ -57,7 +57,7 @@ public class MakeRoomActivity extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == 0) {
                         int hour = result.getData().getIntExtra("hour",0);
-                        int min = result.getData().getIntExtra("hour",0);
+                        int min = result.getData().getIntExtra("min",0);
                         TextView returnText = findViewById(R.id.timetext_btn2);
                         returnText.setText(new StringBuilder().append(hour).append(" : ").append(min));
                         time.put("endhour",hour);

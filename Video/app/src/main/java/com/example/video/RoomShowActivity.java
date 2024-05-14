@@ -2,21 +2,18 @@ package com.example.video;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,52 +21,41 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RoomActivity extends AppCompatActivity {
-    int startDay = 4;
-    int endDay = 20;
+public class RoomShowActivity extends AppCompatActivity {
+    //TODO : DATABASE 에서 ST/END time 가져와서 변수에다 대입하기,뒤가 앞보다 작으면 검사하기
+    //TODO : 선택한 시간 데이터베이스에 업로드하기
+    //TODO : 선택 - 30분 단위로 확장하기
+    int startDay = 1;
+    int endDay = 2;
     int startTime = 7;
     int endTime = 22;
-    room room =  new room();
-    String user;
-    Button okbtn,sumbtn;
-
+    room room;
     Map<String,Object> map = new HashMap<>();
     List<Integer> sum = new ArrayList<>();
-    List<Long> weight = new ArrayList<>();
-    final int[] b = new int[10];
-    ValueEventListener valueEventListener;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    Button select;
+    int max_val;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room);
+        setContentView(R.layout.activity_room_show);
         Intent i = getIntent();
         String username = i.getStringExtra("username");
-        user = username;
         int room_num = i.getIntExtra("room_num",0);
         final int[] meet = new int[10];
         databaseReference.child("room").child(String.valueOf(room_num)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 room r = snapshot.getValue(room.class);
-                if(!r.getGuest().containsKey(username)){
-                    List<Long> sum = new ArrayList<Long>();
-                    for(int i=0;i<(r.getDay().get("endday")-r.getDay().get("startday")+1)*(r.getTime().get("endhour")-r.getTime().get("starthour")+1);i++)
-                        sum.add(0L);
-                    Map<String,Object> map = r.getGuest();
-                    map.put(username,sum);
-                    r.setGuest(map);
-                }
-                room = r;
                 map = r.getGuest();
                 sum = r.getSum();
-                weight = (List<Long>) map.get(username);
                 meet[0] = snapshot.child("day").child("startmonth").getValue(Integer.class);
                 meet[1] = snapshot.child("day").child("startday").getValue(Integer.class);
                 meet[2] = snapshot.child("day").child("endmonth").getValue(Integer.class);
@@ -80,8 +66,8 @@ public class RoomActivity extends AppCompatActivity {
                 endDay = meet[3];
                 startTime = meet[4];
                 endTime = meet[5];
-                LinearLayout my_time = (LinearLayout)findViewById(R.id.my_time);
 
+                LinearLayout my_time = (LinearLayout)findViewById(R.id.my_time);
                 LinearLayout.LayoutParams dayparams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -96,7 +82,7 @@ public class RoomActivity extends AppCompatActivity {
                     TextView tv_time = makeTimeText(ii,btnParams);
                     my_time.addView(tv_time);
                 }//for
-
+                max_val = Collections.max(sum);
                 for(int j = startDay; j<=endDay; j++){
                     LinearLayout my_time_text = new LinearLayout(getApplicationContext());
 
@@ -124,38 +110,20 @@ public class RoomActivity extends AppCompatActivity {
 
             }
         });
-        okbtn = findViewById(R.id.okbtn);
-        okbtn.setOnClickListener(new View.OnClickListener() {
+        select = findViewById(R.id.select);
+        select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                room.setSum(sum);
-                map.replace(username,weight);
-                room.setGuest(map);
-                databaseReference.child("room").child(String.valueOf(room_num)).setValue(room)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(RoomActivity.this,"저장 성공",Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(RoomActivity.this,"저장 실패",Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            }
-        });
-        sumbtn = findViewById(R.id.sumbtn);
-        sumbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RoomActivity.this, RoomShowActivity.class);
+                Intent intent = new Intent(RoomShowActivity.this,RoomActivity.class);
                 intent.putExtra("username",username);
                 intent.putExtra("room_num",room_num);
                 startActivity(intent);
                 finish();
             }
         });
+
     }//onCreate
+
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams){
         TextView newTime = new TextView(this);
         newTime.setText(new StringBuilder().append(i).append("시"));
@@ -163,18 +131,31 @@ public class RoomActivity extends AppCompatActivity {
         newTime.setTextSize(26);
         return newTime;
     }
+
+
     int a;
-    //    Map<String,Object> map = room.getGuest();
-//    List<Integer> sum = room.getSum();
     public TextView makeBtn(int i,LinearLayout.LayoutParams btnParams){
         //TODO: set a button
         TextView newBtn = new TextView(this);
         newBtn.setLayoutParams(btnParams);
-//        newBtn.setTag(weight.get(a));
-        if(weight.get(a) == 0)
-            newBtn.setBackgroundColor(Color.WHITE);
-        else
-            newBtn.setBackgroundColor(Color.BLUE);
+        Resources res = getResources();
+        int s = sum.get(a);
+        int resourceId = res.getIdentifier("step"+s, "color", getPackageName());
+        int step1Color = ContextCompat.getColor(this, resourceId);
+        newBtn.setBackgroundColor(step1Color);
+//        else{
+//            int btn_val = sum.get(a);
+//            //max_val = Collections.max(sum);
+//            int btn_color = btn_val * (1/max_val);
+//            int red_diff = 0xAD - 0x00;
+//            int green_diff = 0xFF - 0x80;
+//            int blue_diff = 0x2F-0x00;
+//            newBtn.setBackgroundColor(Color.rgb(btn_color * red_diff,btn_color * green_diff,btn_color*blue_diff));
+//        }
+//        else if(sum.get(a) == 2)
+//            newBtn.setBackgroundColor(Color.BLUE);
+//        else if(sum.get(a) == 3)
+//            newBtn.setBackgroundColor(Color.MAGENTA);
         newBtn.setId(a);
         newBtn.setText(String.valueOf(a++));
         //newBtn.setBackgroundResource(R.drawable.textview_margin);
@@ -182,22 +163,10 @@ public class RoomActivity extends AppCompatActivity {
         newBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                long now_tag = (long)newBtn.getTag();
-                int id = newBtn.getId();
-                if(weight.get(id) == 0){
-                    newBtn.setBackgroundColor(Color.BLUE);
-//                    newBtn.setTag(1L);
-                    weight.set(id, 1L);
-                    sum.set(id,sum.get(id)+1);
-                }else if(weight.get(id) == 1){
-                    newBtn.setBackgroundColor(Color.WHITE);
-//                    newBtn.setTag(0L);
-                    weight.set(id,0L);
-                    sum.set(id,sum.get(id)-1);
 
-                }
             }
         });
         return newBtn;
     }
+
 }
