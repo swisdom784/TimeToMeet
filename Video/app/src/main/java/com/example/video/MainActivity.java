@@ -50,7 +50,21 @@ public class MainActivity extends AppCompatActivity {
         mEtnLogin = findViewById(R.id.loginbtn);
         mEtnRegister = findViewById(R.id.signupbtn);
 
-
+//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                String s = snapshot.child("room").child("2").child("name").getValue(String.class);
+//                System.out.println(s);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//        databaseReference = FirebaseDatabase.getInstance().getReference();
+//        databaseReference.child("abc").setValue("asb");
         mEtnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

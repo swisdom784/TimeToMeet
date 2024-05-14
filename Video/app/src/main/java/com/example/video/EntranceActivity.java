@@ -16,26 +16,46 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EntranceActivity extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     Button entbtn;
     EditText password;
+    List<Integer> roomList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance);
 
         String username = getIntent().getStringExtra("username");
+        String id = getIntent().getStringExtra("userid");
         entbtn = findViewById(R.id.entbtn);
+        databaseReference = FirebaseDatabase.getInstance().getReference("UserAccount").child(id);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserAccount u = snapshot.getValue(UserAccount.class);
+                if(u.getRoomList() != null)
+                    roomList = u.getRoomList();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         entbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 password = findViewById(R.id.password);
                 String p = password.getText().toString();
                 final int[] flag = {0};
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("room");
+                databaseReference = FirebaseDatabase.getInstance().getReference("room");
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -49,6 +69,8 @@ public class EntranceActivity extends AppCompatActivity {
                         if(flag[0] == 0){
                             Toast.makeText(EntranceActivity.this,"비밀번호가 일치하지 않습니다",Toast.LENGTH_SHORT).show();
                         } else {
+                            roomList.add(flag[0]);
+                            FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList").setValue(roomList);
                             Intent intent = new Intent(EntranceActivity.this, RoomShowActivity.class);
                             intent.putExtra("username",username);
                             intent.putExtra("room_num",flag[0]);

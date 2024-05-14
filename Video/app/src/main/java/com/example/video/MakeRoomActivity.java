@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,9 +35,10 @@ public class MakeRoomActivity extends AppCompatActivity {
     room r = new room();
     EditText room,password;
     Button makebtn;
-    DatabaseReference mdatabase = FirebaseDatabase.getInstance().getReference("room_num");
+    DatabaseReference mdatabase = FirebaseDatabase.getInstance().getReference();
     Map<String,Integer> time = new HashMap<>();
     Map<String,Integer> days = new HashMap<>();
+    List<Integer> roomList = new ArrayList<>();
     ActivityResultLauncher<Intent> time1ActivityResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -108,11 +110,29 @@ public class MakeRoomActivity extends AppCompatActivity {
         Intent follow = getIntent();
         String username = follow.getStringExtra("username");
         final int[] room_num = new int[10];
-        mdatabase.addValueEventListener(new ValueEventListener() {
+        mdatabase = mdatabase.child("room_num");
+        String id = follow.getStringExtra("userid");
+        mdatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Double num = snapshot.getValue(Double.class);
                 room_num[0] = num.intValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("UserAccount").child(id);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserAccount u = snapshot.getValue(UserAccount.class);
+                if(u.getRoomList() != null)
+                    roomList = u.getRoomList();
+                roomList.add(room_num[0]+1);
             }
 
             @Override
@@ -143,6 +163,8 @@ public class MakeRoomActivity extends AppCompatActivity {
                 mdatabase.setValue(room_num[0]+1);
                 mdatabase = FirebaseDatabase.getInstance().getReference("room");
                 mdatabase.child(String.valueOf(room_num[0]+1)).setValue(r);
+                mdatabase = FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList");
+                mdatabase.setValue(roomList);
                 finish();
             }
         });
