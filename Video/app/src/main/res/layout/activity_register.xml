@@ -105,6 +105,7 @@
                 android:drawableLeft="@drawable/ic_baseline_person_outline_24"/>
 
             <EditText
+                android:id="@+id/username"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
@@ -137,6 +138,7 @@
                 android:drawableLeft="@drawable/ic_baseline_info_24"/>
 
             <EditText
+                android:id="@+id/password"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
@@ -174,20 +176,20 @@
                 android:paddingStart="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" 비밀번호 확인"
+                android:text=" 닉네임"
                 android:drawableLeft="@drawable/ic_baseline_info_24"
                 android:textColor="#425276"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/name"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
-                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="비밀번호를 다시 입력하세요"
+                android:hint="닉네임을 입력하세요"
                 android:textColorHint="@color/white"/>
 
             <TextView
@@ -204,6 +206,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/signupbtn"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:text="Complete"

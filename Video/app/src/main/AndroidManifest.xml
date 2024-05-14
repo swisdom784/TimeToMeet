@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Video"
         tools:targetApi="31">
         <activity
+            android:name=".RoomShowActivitiy"
+            android:exported="false" />
+        <activity
             android:name=".test"
             android:exported="false" />
         <activity
