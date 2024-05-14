@@ -55,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
             public  void onClick(View v){
                 Intent intent = new Intent(HomeActivity.this, MakeRoomActivity.class);
                 intent.putExtra("username",name[0]);
+                intent.putExtra("userid",id);
                 startActivity(intent);
             }
         });
@@ -64,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, EntranceActivity.class);
                 intent.putExtra("username",name[0]);
+                intent.putExtra("userid",id);
                 startActivity(intent);
             }
         });

@@ -1,5 +1,7 @@
 package com.example.video;
 
+import java.util.List;
+
 public class UserAccount {
 
 
@@ -7,9 +9,14 @@ public class UserAccount {
     private String password;
     private String emailId;
     private String username;
+
+    private List<Integer> roomList;
     public UserAccount(){
     }
 
+    public List<Integer> getRoomList() {return roomList;}
+
+    public void setRoomList(List<Integer> roomList) {this.roomList = roomList;}
     public String getUsername(){return username;}
     public void setUsername(String username){this.username = username;}
     public String getIdToken(){return idToken;}
