@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,9 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase mDatabase;
     Button makebtn,entbtn;
+    List<Integer> roomList = new ArrayList<>();
+    ArrayList<HomeListElement> elementList = new ArrayList<>();
+    ListView roomListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,48 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         }).toString();
+        //Make room ListView
+        DatabaseReference databaseReference = mDatabase.child(id);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserAccount u = snapshot.getValue(UserAccount.class);
+                if(u.getRoomList() != null)
+                    roomList = u.getRoomList();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //TODO : 데이터베이스에서 roomList 제대로 받아오면 지우기
+        if(roomList.isEmpty()){
+            for(int i = 0;i<=10;i++){
+                roomList.add(i);
+            }
+        }
+        //TODO : 데이터베이스에서 roomList 제대로 받아오면 지우기
+
+        for(int i = 0; i<roomList.size(); i++){
+            int num = roomList.get(i);
+            //TODO : Room에 들어와 있는 사람 수 받아와서 HomeListElement(~~, !여기!)에 넣기, 현재는 NOT exitst 로 해둠
+            HomeListElement tempElement = new HomeListElement(String.valueOf(num),"Not Exist");
+            elementList.add(tempElement);
+        }
+
+        roomListView = findViewById(R.id.roomListOrigin);
+        HomeListAdapter hlAdapter = new HomeListAdapter(getApplicationContext(),elementList);
+        roomListView.setAdapter(hlAdapter);
+        roomListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id){
+                //TODO : intent 로 방으로 연결되게 하기
+                Toast.makeText(getApplicationContext(),hlAdapter.getItem(position).getRoomNumber(),Toast.LENGTH_LONG).show();
+            }
+        });
+//Make room ListView
+
         makebtn = findViewById(R.id.makebtn);
         makebtn.setOnClickListener(new View.OnClickListener(){
             @Override
