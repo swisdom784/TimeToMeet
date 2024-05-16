@@ -132,7 +132,6 @@ public class MakeRoomActivity extends AppCompatActivity {
                 UserAccount u = snapshot.getValue(UserAccount.class);
                 if(u.getRoomList() != null)
                     roomList = u.getRoomList();
-                roomList.add(room_num[0]+1);
             }
 
             @Override
@@ -149,7 +148,7 @@ public class MakeRoomActivity extends AppCompatActivity {
                     weight.add(0);
                     sum.add(0);
                 }
-
+                roomList.add(room_num[0]+1);
                 Map<String,Object> s = new HashMap<>();
                 s.put(username,weight);
 
