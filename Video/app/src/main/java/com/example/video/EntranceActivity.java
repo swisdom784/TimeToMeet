@@ -69,7 +69,7 @@ public class EntranceActivity extends AppCompatActivity {
                         if(flag[0] == 0){
                             Toast.makeText(EntranceActivity.this,"비밀번호가 일치하지 않습니다",Toast.LENGTH_SHORT).show();
                         } else {
-                            roomList.add(flag[0]);
+                            if(!roomList.contains(flag[0])) roomList.add(flag[0]);
                             FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList").setValue(roomList);
                             Intent intent = new Intent(EntranceActivity.this, RoomShowActivity.class);
                             intent.putExtra("username",username);
