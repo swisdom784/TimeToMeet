@@ -106,7 +106,6 @@ public class MakeRoomActivity extends AppCompatActivity {
 
         room = findViewById(R.id.room);
         makebtn = findViewById(R.id.makebtn);
-        password = findViewById(R.id.password);
         Intent follow = getIntent();
         String username = follow.getStringExtra("username");
         final int[] room_num = new int[10];
@@ -153,7 +152,7 @@ public class MakeRoomActivity extends AppCompatActivity {
                 s.put(username,weight);
 
                 r.setname(room.getText().toString());
-                r.setPassword(password.getText().toString());
+                r.setPassword(HashKeyGenerator.generateRandomHashKey());
                 r.setOwner(username);
                 r.setGuest(s);
                 r.setDay(days);

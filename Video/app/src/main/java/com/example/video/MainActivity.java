@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,21 +51,13 @@ public class MainActivity extends AppCompatActivity {
         mEtnLogin = findViewById(R.id.loginbtn);
         mEtnRegister = findViewById(R.id.signupbtn);
 
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                String s = snapshot.child("room").child("2").child("name").getValue(String.class);
-//                System.out.println(s);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        databaseReference = FirebaseDatabase.getInstance().getReference();
-//        databaseReference.child("abc").setValue("asb");
+       FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            // User is logged in, navigate to HomeActivity
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(intent);
+//            finish();  // Close the current activity
+        }
         mEtnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -77,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             startActivity(intent);
+//                            finish();
                         } else {
                             Toast.makeText(MainActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
                         }
