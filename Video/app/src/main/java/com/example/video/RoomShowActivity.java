@@ -40,6 +40,7 @@ public class RoomShowActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     Button select;
+    TextView password,roomName;
     int max_val;
 
     @Override
@@ -56,6 +57,11 @@ public class RoomShowActivity extends AppCompatActivity {
                 room r = snapshot.getValue(room.class);
                 map = r.getGuest();
                 sum = r.getSum();
+                String ps = r.getPassword();
+                password = findViewById(R.id.password);
+                password.setText(ps);
+                roomName = findViewById(R.id.name);
+                roomName.setText(r.getname());
                 meet[0] = snapshot.child("day").child("startmonth").getValue(Integer.class);
                 meet[1] = snapshot.child("day").child("startday").getValue(Integer.class);
                 meet[2] = snapshot.child("day").child("endmonth").getValue(Integer.class);
