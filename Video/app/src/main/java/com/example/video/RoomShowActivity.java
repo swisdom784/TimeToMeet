@@ -130,6 +130,13 @@ public class RoomShowActivity extends AppCompatActivity {
 
     }//onCreate
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        //TODO : USER리스트를 리스트뷰로 ROOMSHOW 위에 표혀
+        //TODO : 각 리스트 element를 클릭하면 USER 가 선택한 시간 표현
+    }
+
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams){
         TextView newTime = new TextView(this);
         newTime.setText(new StringBuilder().append(i).append("시"));
