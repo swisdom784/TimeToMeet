@@ -135,10 +135,18 @@ public class HomeActivity extends AppCompatActivity {
                 for(DataSnapshot child : snapshot.getChildren())
                 {
                     room r = child.getValue(room.class);
-                    if(b++ < s) continue;
+                    if(b++ < s){
+                        room r2 = roomInfo.get(b-1);
+                        if(r.getGuest().size() != r2.getGuest().size())
+                        {
+                            roomInfo.set(b-1,r);
+                        }
+                        continue;
+                    }
                     roomInfo.add(r);
                 }
                 b = 0;
+
                 for(int i = a; i<roomList.size();i++){
                     a++;
                     if(roomList.size() < a) { a--; break;}
@@ -151,8 +159,16 @@ public class HomeActivity extends AppCompatActivity {
 
                     elementList.add(tempElement);
                 }
-
                 roomListView = findViewById(R.id.roomListOrigin);
+                for(int i= 0;i<roomList.size();i++)
+                {
+                    HomeListElement check = elementList.get(i);
+                    room r = roomInfo.get(roomList.get(i)-1);
+                    if(Integer.valueOf(check.getRoomPeople()) != r.getGuest().size()){
+                        check.setRoomPeople(String.valueOf(r.getGuest().size()));
+                        elementList.set(i,check);
+                    }
+                }
                 HomeListAdapter hlAdapter = new HomeListAdapter(getApplicationContext(),elementList);
                 roomListView.setAdapter(hlAdapter);
                 roomListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
