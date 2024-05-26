@@ -21,9 +21,6 @@
             android:layout_height="50dp"
             android:textSize="20sp"
             android:text="PrintRoom"/>
-        <CheckBox
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

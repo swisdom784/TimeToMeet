@@ -115,6 +115,35 @@ public class RoomShowActivity extends AppCompatActivity {
                     }//for
                     day_list.addView(my_time_text);
                 }//for
+
+                peopleListView = findViewById(R.id.personList);
+
+                nameList.addAll(map.keySet());
+
+
+//        for(int i = 0;i<11;i++){
+//            UserListElement ule = new UserListElement("test"+i);
+//            elementList.add(ule);
+//        }
+                for(String name : nameList){
+                    UserListElement ule = new UserListElement(name);
+                    elementList.add(ule);
+                }
+
+
+                UserListAdapter ulAdapter = new UserListAdapter(getApplicationContext(),elementList);
+                peopleListView.setAdapter(ulAdapter);
+                peopleListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    public void onItemClick(AdapterView parent, View v, int position, long id){
+                        //TODO : intent 로 User 시간으로 연결되게 하기
+                        Toast.makeText(RoomShowActivity.this,"item clicked",Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(RoomShowActivity.this,RoomGuestActivity.class);
+                        intent.putExtra("username",elementList.get(position).getPeopleName());
+                        intent.putExtra("room_num",room_num);
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
@@ -143,34 +172,7 @@ public class RoomShowActivity extends AppCompatActivity {
 
 
         //username:weight
-        peopleListView = findViewById(R.id.personList);
-        nameList.addAll(map.keySet());
 
-
-//        for(int i = 0;i<11;i++){
-//            UserListElement ule = new UserListElement("test"+i);
-//            elementList.add(ule);
-//        }
-        for(String name : nameList){
-            UserListElement ule = new UserListElement(name);
-            elementList.add(ule);
-        }
-
-
-        UserListAdapter ulAdapter = new UserListAdapter(getApplicationContext(),elementList);
-        peopleListView.setAdapter(ulAdapter);
-        peopleListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView parent, View v, int position, long id){
-                //TODO : intent 로 User 시간으로 연결되게 하기
-                Toast.makeText(RoomShowActivity.this,"item clicked",Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(RoomShowActivity.this,RoomActivity.class);
-                intent.putExtra("username",elementList.get(position).getPeopleName());
-                intent.putExtra("room_num",room_num);
-                startActivity(intent);
-                finish();
-            }
-        });
     }//onStart
 
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams){
