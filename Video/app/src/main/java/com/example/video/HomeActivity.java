@@ -113,9 +113,7 @@ public class HomeActivity extends AppCompatActivity {
                     room r2 = roomInfo.get(num-1);
                     int Pnum = r2.getGuest().size();
                     String roomName = r2.getname();
-                    //TODO : Room에 들어와 있는 사람 수 받아와서 HomeListElement(~~, !여기!)에 넣기, 현재는 NOT exitst 로 해둠
                     HomeListElement tempElement = new HomeListElement(roomName,String.valueOf(Pnum),num);
-
                     elementList.add(tempElement);
                 }
                 roomListView = findViewById(R.id.roomListOrigin);

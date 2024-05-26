@@ -10,9 +10,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,12 +39,16 @@ public class RoomShowActivity extends AppCompatActivity {
     int endTime = 22;
     room room;
     Map<String,Object> map = new HashMap<>();
+    ArrayList<UserListElement> elementList = new ArrayList<>();
+    ListView peopleListView;
+    ArrayList<String> nameList = new ArrayList<>();
     List<Integer> sum = new ArrayList<>();
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     Button select;
     TextView password,roomName;
-    int max_val;
+    int room_num;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -49,7 +56,7 @@ public class RoomShowActivity extends AppCompatActivity {
         setContentView(R.layout.activity_room_show);
         Intent i = getIntent();
         String username = i.getStringExtra("username");
-        int room_num = i.getIntExtra("room_num",0);
+        room_num = i.getIntExtra("room_num",0);
         final int[] meet = new int[10];
         databaseReference.child("room").child(String.valueOf(room_num)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -88,7 +95,6 @@ public class RoomShowActivity extends AppCompatActivity {
                     TextView tv_time = makeTimeText(ii,btnParams);
                     my_time.addView(tv_time);
                 }//for
-                max_val = Collections.max(sum);
                 for(int j = startDay; j<=endDay; j++){
                     LinearLayout my_time_text = new LinearLayout(getApplicationContext());
 
@@ -133,9 +139,39 @@ public class RoomShowActivity extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
-        //TODO : USER리스트를 리스트뷰로 ROOMSHOW 위에 표혀
         //TODO : 각 리스트 element를 클릭하면 USER 가 선택한 시간 표현
-    }
+
+        //변수 map 사용, 파이썬의 딕셔너리와 비슷,
+        //username:weight
+        peopleListView = findViewById(R.id.personList);
+        nameList.addAll(map.keySet());
+
+
+//        for(int i = 0;i<11;i++){
+//            UserListElement ule = new UserListElement("test"+i);
+//            elementList.add(ule);
+//        }
+        for(String name : nameList){
+            UserListElement ule = new UserListElement(name);
+            elementList.add(ule);
+        }
+
+
+        UserListAdapter ulAdapter = new UserListAdapter(getApplicationContext(),elementList);
+        peopleListView.setAdapter(ulAdapter);
+        peopleListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView parent, View v, int position, long id){
+                //TODO : intent 로 User 시간으로 연결되게 하기
+                Toast.makeText(RoomShowActivity.this,"item clicked",Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(RoomShowActivity.this,RoomActivity.class);
+                intent.putExtra("username",elementList.get(position).getPeopleName());
+                intent.putExtra("room_num",room_num);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }//onStart
 
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams){
         TextView newTime = new TextView(this);
@@ -152,23 +188,20 @@ public class RoomShowActivity extends AppCompatActivity {
         TextView newBtn = new TextView(this);
         newBtn.setLayoutParams(btnParams);
         Resources res = getResources();
-        int s = sum.get(a);
-        int resourceId = res.getIdentifier("step"+s, "color", getPackageName());
-        int step1Color = ContextCompat.getColor(this, resourceId);
-        newBtn.setBackgroundColor(step1Color);
-//        else{
-//            int btn_val = sum.get(a);
-//            //max_val = Collections.max(sum);
-//            int btn_color = btn_val * (1/max_val);
-//            int red_diff = 0xAD - 0x00;
-//            int green_diff = 0xFF - 0x80;
-//            int blue_diff = 0x2F-0x00;
-//            newBtn.setBackgroundColor(Color.rgb(btn_color * red_diff,btn_color * green_diff,btn_color*blue_diff));
-//        }
-//        else if(sum.get(a) == 2)
-//            newBtn.setBackgroundColor(Color.BLUE);
-//        else if(sum.get(a) == 3)
-//            newBtn.setBackgroundColor(Color.MAGENTA);
+        int max_val;
+        max_val = Collections.max(sum);
+        int btn_val = sum.get(a);
+        double btn_color = (double)btn_val * (1/(double)max_val);
+        int red_diff = 0xFF - 0x96;
+        int green_diff = 0xFF - 0xA5;
+        int blue_diff = 0xFF-0xFF;
+        int red = (int)(red_diff*btn_color),green = (int)(green_diff*btn_color), blue = (int)(blue_diff*btn_color);
+        newBtn.setBackgroundColor(Color.rgb(0xFF - red,0xFF - green,0xFF - blue));
+
+//        int resourceId = res.getIdentifier("step"+s, "color", getPackageName());
+//        int step1Color = ContextCompat.getColor(this, resourceId);
+//        newBtn.setBackgroundColor(step1Color);
+
         newBtn.setId(a);
         newBtn.setText(String.valueOf(a++));
         //newBtn.setBackgroundResource(R.drawable.textview_margin);
@@ -176,7 +209,7 @@ public class RoomShowActivity extends AppCompatActivity {
         newBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(RoomShowActivity.this,"time clicked",Toast.LENGTH_SHORT).show();
             }
         });
         return newBtn;
