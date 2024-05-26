@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".RoomGuestActivity">
 
     <TextView
         android:id="@+id/name"
@@ -70,13 +70,4 @@
             </LinearLayout>
         </ScrollView>
     </HorizontalScrollView>
-
-
-    <Button
-        android:id="@+id/okbtn"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="저장"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
