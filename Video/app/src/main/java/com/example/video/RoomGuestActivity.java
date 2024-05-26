@@ -39,6 +39,7 @@ public class RoomGuestActivity extends AppCompatActivity {
     room room =  new room();
     String user;
     Button okbtn,sumbtn;
+    TextView guestName;
 
     Map<String,Object> map = new HashMap<>();
     List<Integer> sum = new ArrayList<>();
@@ -57,6 +58,8 @@ public class RoomGuestActivity extends AppCompatActivity {
         user = username;
         int room_num = i.getIntExtra("room_num",0);
         final int[] meet = new int[10];
+        guestName = findViewById(R.id.name);
+        guestName.setText(user);
         databaseReference.child("room").child(String.valueOf(room_num)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -128,17 +131,6 @@ public class RoomGuestActivity extends AppCompatActivity {
             }
         });
 
-        sumbtn = findViewById(R.id.sumbtn);
-        sumbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RoomGuestActivity.this, RoomShowActivity.class);
-                intent.putExtra("username",username);
-                intent.putExtra("room_num",room_num);
-                startActivity(intent);
-                finish();
-            }
-        });
     }//onCreate
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams){
         TextView newTime = new TextView(this);

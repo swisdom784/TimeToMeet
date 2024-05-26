@@ -36,6 +36,7 @@ public class RoomActivity extends AppCompatActivity {
     int endTime = 22;
     room room =  new room();
     String user;
+    int roomNum;
     Button okbtn,sumbtn;
 
     Map<String,Object> map = new HashMap<>();
@@ -54,6 +55,7 @@ public class RoomActivity extends AppCompatActivity {
         String username = i.getStringExtra("username");
         user = username;
         int room_num = i.getIntExtra("room_num",0);
+        roomNum = room_num;
         final int[] meet = new int[10];
         databaseReference.child("room").child(String.valueOf(room_num)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -145,17 +147,7 @@ public class RoomActivity extends AppCompatActivity {
                         });
             }
         });
-        sumbtn = findViewById(R.id.sumbtn);
-        sumbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RoomActivity.this, RoomShowActivity.class);
-                intent.putExtra("username",username);
-                intent.putExtra("room_num",room_num);
-                startActivity(intent);
-                finish();
-            }
-        });
+
     }//onCreate
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams){
         TextView newTime = new TextView(this);
@@ -200,5 +192,13 @@ public class RoomActivity extends AppCompatActivity {
             }
         });
         return newBtn;
+    }
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Intent intent = new Intent(RoomActivity.this,RoomShowActivity.class);
+        intent.putExtra("username",user);
+        intent.putExtra("room_num",roomNum);
+        startActivity(intent);
     }
 }

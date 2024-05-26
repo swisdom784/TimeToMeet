@@ -79,11 +79,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:text="저장"/>
-    <Button
-        android:id="@+id/sumbtn"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:text="총합"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
