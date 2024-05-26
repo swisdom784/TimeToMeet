@@ -6,9 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,15 +31,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RoomActivity extends AppCompatActivity {
+public class RoomGuestActivity extends AppCompatActivity {
     int startDay = 4;
     int endDay = 20;
     int startTime = 7;
     int endTime = 22;
     room room =  new room();
     String user;
-    int roomNum;
     Button okbtn,sumbtn;
+    TextView guestName;
 
     Map<String,Object> map = new HashMap<>();
     List<Integer> sum = new ArrayList<>();
@@ -50,13 +52,14 @@ public class RoomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room);
+        setContentView(R.layout.activity_room_guest);
         Intent i = getIntent();
         String username = i.getStringExtra("username");
         user = username;
         int room_num = i.getIntExtra("room_num",0);
-        roomNum = room_num;
         final int[] meet = new int[10];
+        guestName = findViewById(R.id.name);
+        guestName.setText(user);
         databaseReference.child("room").child(String.valueOf(room_num)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -127,26 +130,6 @@ public class RoomActivity extends AppCompatActivity {
 
             }
         });
-        okbtn = findViewById(R.id.okbtn);
-        okbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                room.setSum(sum);
-                map.replace(username,weight);
-                room.setGuest(map);
-                databaseReference.child("room").child(String.valueOf(room_num)).setValue(room)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(RoomActivity.this,"저장 성공",Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(RoomActivity.this,"저장 실패",Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            }
-        });
 
     }//onCreate
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams){
@@ -172,33 +155,6 @@ public class RoomActivity extends AppCompatActivity {
         newBtn.setText(String.valueOf(a++));
         //newBtn.setBackgroundResource(R.drawable.textview_margin);
         newBtn.setGravity(Gravity.CENTER);
-        newBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                long now_tag = (long)newBtn.getTag();
-                int id = newBtn.getId();
-                if(weight.get(id) == 0){
-                    newBtn.setBackgroundColor(Color.BLUE);
-//                    newBtn.setTag(1L);
-                    weight.set(id, 1L);
-                    sum.set(id,sum.get(id)+1);
-                }else if(weight.get(id) == 1){
-                    newBtn.setBackgroundColor(Color.WHITE);
-//                    newBtn.setTag(0L);
-                    weight.set(id,0L);
-                    sum.set(id,sum.get(id)-1);
-
-                }
-            }
-        });
         return newBtn;
-    }
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-        Intent intent = new Intent(RoomActivity.this,RoomShowActivity.class);
-        intent.putExtra("username",user);
-        intent.putExtra("room_num",roomNum);
-        startActivity(intent);
     }
 }
