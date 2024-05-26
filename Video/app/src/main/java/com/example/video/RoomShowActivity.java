@@ -141,7 +141,7 @@ public class RoomShowActivity extends AppCompatActivity {
         super.onStart();
         //TODO : 각 리스트 element를 클릭하면 USER 가 선택한 시간 표현
 
-        //변수 map 사용, 파이썬의 딕셔너리와 비슷,
+
         //username:weight
         peopleListView = findViewById(R.id.personList);
         nameList.addAll(map.keySet());
