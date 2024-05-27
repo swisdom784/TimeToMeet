@@ -132,7 +132,6 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView parent, View v, int position, long id){
                         //TODO : intent 로 방으로 연결되게 하기
-                        Toast.makeText(getApplicationContext(),hlAdapter.getItem(position).getRoomNumber(),Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(HomeActivity.this, RoomShowActivity.class);
                         intent.putExtra("username",name[0]);
                         intent.putExtra("room_num",hlAdapter.getItem(position).getRoomNum());

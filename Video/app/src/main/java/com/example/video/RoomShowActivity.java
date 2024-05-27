@@ -136,8 +136,6 @@ public class RoomShowActivity extends AppCompatActivity {
                 peopleListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                     public void onItemClick(AdapterView parent, View v, int position, long id){
                         //TODO : intent 로 User 시간으로 연결되게 하기
-                        Toast.makeText(RoomShowActivity.this,"item clicked",Toast.LENGTH_SHORT).show();
-
                         Intent intent = new Intent(RoomShowActivity.this,RoomGuestActivity.class);
                         intent.putExtra("username",elementList.get(position).getPeopleName());
                         intent.putExtra("room_num",room_num);
@@ -211,7 +209,7 @@ public class RoomShowActivity extends AppCompatActivity {
         newBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(RoomShowActivity.this,"time clicked",Toast.LENGTH_SHORT).show();
+                //시간을 클릭했을 때 나오는 메세지
             }
         });
         return newBtn;
