@@ -103,6 +103,7 @@ public class MakeRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_room);
+        overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
 
         room = findViewById(R.id.room);
         makebtn = findViewById(R.id.makebtn);

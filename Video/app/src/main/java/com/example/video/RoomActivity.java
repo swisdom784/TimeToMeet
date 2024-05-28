@@ -200,5 +200,6 @@ public class RoomActivity extends AppCompatActivity {
         intent.putExtra("username",user);
         intent.putExtra("room_num",roomNum);
         startActivity(intent);
+        overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
     }
 }

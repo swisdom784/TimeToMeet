@@ -3,8 +3,11 @@ package com.example.video;
 
 import static androidx.fragment.app.FragmentManager.TAG;
 
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.activity.ComponentActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -38,10 +41,13 @@ public class MainActivity extends AppCompatActivity {
     EditText mEtEmail,mEtPwd;
     Button mEtnRegister;
     Button mEtnLogin;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
@@ -53,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
         if (currentUser != null) {
+
             // User is logged in, navigate to HomeActivity
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(intent);
+
 //            finish();  // Close the current activity
         }
         mEtnLogin.setOnClickListener(new View.OnClickListener(){
@@ -68,8 +76,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             startActivity(intent);
+                            overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
+
 //                            finish();
                         } else {
                             Toast.makeText(MainActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
@@ -81,9 +92,26 @@ public class MainActivity extends AppCompatActivity {
         mEtnRegister.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
+
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
+
             }
         });
+
+
+
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        if (isFinishing()) {
+            // back 버튼으로 화면 종료가 야기되면 동작한다.
+            overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
+        }
+
+    }
+
 }
