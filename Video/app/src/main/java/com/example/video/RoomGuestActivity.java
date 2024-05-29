@@ -2,11 +2,15 @@ package com.example.video;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -96,7 +100,7 @@ public class RoomGuestActivity extends AppCompatActivity {
 
                 LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
                         200,
-                        100);
+                        110);
 
                 for(int ii = startTime;ii<=endTime;ii++){
                     TextView tv_time = makeTimeText(ii,btnParams);
@@ -113,8 +117,13 @@ public class RoomGuestActivity extends AppCompatActivity {
                     TextView day_text = new TextView(getApplicationContext());
                     String day = String.valueOf(new StringBuilder().append(j).append("일"));
                     day_text.setText(day);
-                    day_text.setTextSize(26);
+                    day_text.setTextSize(23);
                     day_text.setGravity(Gravity.CENTER);
+                    day_text.setTypeface(ResourcesCompat.getFont(getApplicationContext(),R.font.bagel_fat_one_regular));
+                    day_text.setTextColor(getResources().getColor(R.color.colorYlnMnBlue));
+                    int padding = 4;
+                    int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,padding,getResources().getDisplayMetrics());
+                    day_text.setPadding(0,0,0,paddingpx);
 
                     my_time_text.addView(day_text);
                     for(int ii = startTime;ii<=endTime;ii++){
@@ -136,7 +145,12 @@ public class RoomGuestActivity extends AppCompatActivity {
         TextView newTime = new TextView(this);
         newTime.setText(new StringBuilder().append(i).append("시"));
         newTime.setGravity(Gravity.RIGHT);
-        newTime.setTextSize(26);
+        newTime.setTextSize(23);
+        newTime.setTypeface(ResourcesCompat.getFont(getApplicationContext(),R.font.bagel_fat_one_regular));
+        newTime.setTextColor(getResources().getColor(R.color.colorYlnMnBlue));
+        int padding = 5;
+        int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,padding,getResources().getDisplayMetrics());
+        newTime.setPadding(15,paddingpx,0,paddingpx);
         return newTime;
     }
     int a;
@@ -146,13 +160,25 @@ public class RoomGuestActivity extends AppCompatActivity {
         //TODO: set a button
         TextView newBtn = new TextView(this);
         newBtn.setLayoutParams(btnParams);
-//        newBtn.setTag(weight.get(a));
+        newBtn.setTag(weight.get(a));
+//        if(weight.get(a) == 0)
+//            newBtn.setBackgroundColor(Color.WHITE);
+//        else
+//            newBtn.setBackgroundColor(Color.BLUE);
+        // 테두리 모양 생성
+        GradientDrawable border = new GradientDrawable();
         if(weight.get(a) == 0)
-            newBtn.setBackgroundColor(Color.WHITE);
+            border.setColor(Color.WHITE);
         else
-            newBtn.setBackgroundColor(Color.BLUE);
-        newBtn.setId(a);
-        newBtn.setText(String.valueOf(a++));
+            border.setColor(getResources().getColor(R.color.colorPowderBlue));
+//        border.setColor(Color.BLUE); // 배경색 투명
+        border.setStroke(3, getResources().getColor(R.color.colorCadetGray));// 테두리 두께와 색상
+        border.setCornerRadius(1); // 모서리 곡률
+
+        // 테두리를 Button에 설정
+        newBtn.setBackground(border);
+        newBtn.setId(a++);
+//        newBtn.setText(String.valueOf(a));
         //newBtn.setBackgroundResource(R.drawable.textview_margin);
         newBtn.setGravity(Gravity.CENTER);
         return newBtn;

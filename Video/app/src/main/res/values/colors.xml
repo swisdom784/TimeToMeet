@@ -9,6 +9,13 @@
     <color name="step4">#FFA0AFFF</color>
     <color name="step5">#96A5FF</color>
 
+    <color name="colorCadetGray">#91A3B0</color>
+    <color name="colorSlateGray">#708090</color>
+    <color name="colorCharcoal">#36454F</color>
+
+    <color name="colorPowderBlue">#9EB9D4</color>
     <color name="colorPrimaryDark">#425276</color>
     <color name="colorYlnMnBlue">#425276</color>
+    <color name="colorPrussianBlue">#003153</color>
+    <color name="colorOxfordBlue">#002147</color>
 </resources>

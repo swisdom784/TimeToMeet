@@ -7,6 +7,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -14,30 +15,43 @@
             android:id="@+id/logoImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginStart="10dp"
             app:srcCompat="@drawable/logo01"/>
         <TextView
             android:id="@+id/roomNumber"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:textSize="20sp"
-            android:text="PrintRoom"/>
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3sp"
+            android:layout_marginLeft="7sp"
+            android:layout_gravity="center_vertical"
+            android:textSize="25sp"
+            android:text="PrintRoom"
+            android:textColor="@color/colorSlateGray"
+            android:fontFamily="@font/mainfont01"/>
         <ImageView
             android:id="@+id/peopleImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/logo01" />
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_baseline_person_outline_24" />
         <TextView
             android:id="@+id/roomPeople"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3sp"
+            android:layout_marginLeft="5sp"
             android:textSize="20sp"
-            android:text="10"/>
+            android:text="10"
+            android:textColor="@color/colorSlateGray"
+            android:fontFamily="@font/mainfont01"
+            android:layout_gravity="center_vertical"/>
         <CheckBox
             android:id="@+id/checkbox"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:focusableInTouchMode="false"
+            android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

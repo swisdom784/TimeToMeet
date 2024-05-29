@@ -15,12 +15,17 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:srcCompat="@drawable/logo01"/>
+
         <TextView
             android:id="@+id/peopleName"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="3sp"
+            android:text="PrintRoom"
             android:textSize="20sp"
-            android:text="PrintRoom"/>
+            android:fontFamily="@font/mainfont01"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

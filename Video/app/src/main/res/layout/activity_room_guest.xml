@@ -2,60 +2,82 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RoomGuestActivity">
+    android:background="@drawable/background_a">
 
-    <TextView
-        android:id="@+id/name"
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Choose a time"
-        android:textSize="40sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".RoomGuestActivity">
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_constraintLeft_toLeftOf="parent">
-        <ScrollView
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/bagel_fat_one_regular"
+            android:gravity="center"
+            android:text="Choose a time"
+            android:textSize="45sp"
+            android:textColor="@color/colorPrussianBlue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <HorizontalScrollView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/day_list"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name">
+
+            <ScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/everytime"
+                    android:id="@+id/day_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="time"
-                        android:textSize="26sp" />
+                    android:orientation="horizontal">
+
                     <LinearLayout
-                        android:id="@+id/my_time"
+                        android:id="@+id/everytime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical" />
-                </LinearLayout>
+                        android:orientation="vertical"
+                        android:layout_marginEnd="5sp">
 
-                <LinearLayout
-                    android:id="@+id/my_time_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!--
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Time"
+                            android:textSize="26sp"
+                            android:textColor="@color/colorYlnMnBlue"
+                            android:fontFamily="@font/bagel_fat_one_regular" />
+
+                        <LinearLayout
+                            android:id="@+id/my_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/my_time_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--
                         <LinearLayout
                             android:id="@+id/my_time_text"
                             android:layout_width="match_parent"
@@ -64,10 +86,12 @@
                         </LinearLayout>
             -->
 
+                    </LinearLayout>
+
+
                 </LinearLayout>
+            </ScrollView>
+        </HorizontalScrollView>
+    </LinearLayout>
 
-
-            </LinearLayout>
-        </ScrollView>
-    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
