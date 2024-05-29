@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("UserAccount");
         String id = user.getUid();
         mDatabase.child(id).addValueEventListener(new ValueEventListener() {
@@ -69,6 +70,7 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra("username",name[0]);
                 intent.putExtra("userid",id);
                 startActivity(intent);
+                overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
             }
         });
         entbtn = findViewById(R.id.entbtn);
@@ -79,9 +81,12 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra("username",name[0]);
                 intent.putExtra("userid",id);
                 startActivity(intent);
+                overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
             }
         });
+
     }
+
     @Override
     protected void onStart(){
         super.onStart();
@@ -136,6 +141,7 @@ public class HomeActivity extends AppCompatActivity {
                         intent.putExtra("username",name[0]);
                         intent.putExtra("room_num",hlAdapter.getItem(position).getRoomNum());
                         startActivity(intent);
+                        overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
                     }
                 });
             }
@@ -147,4 +153,15 @@ public class HomeActivity extends AppCompatActivity {
         });
         Log.d("onStart_activated","test_log");
     }//onStart
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        if (isFinishing()) {
+            // back 버튼으로 화면 종료가 야기되면 동작한다.
+            overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
+        }
+
+    }
 }
