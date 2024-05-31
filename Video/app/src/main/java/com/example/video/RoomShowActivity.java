@@ -192,9 +192,9 @@ public class RoomShowActivity extends AppCompatActivity {
         max_val = Collections.max(sum);
         int btn_val = sum.get(a);
         double btn_color = (double)btn_val * (1/(double)max_val);
-        int red_diff = 0xFF - 0x96;
-        int green_diff = 0xFF - 0xA5;
-        int blue_diff = 0xFF-0xFF;
+        int red_diff = 0xFF - 0x2E;
+        int green_diff = 0xFF - 0x50;
+        int blue_diff = 0xFF-0x90;
         int red = (int)(red_diff*btn_color),green = (int)(green_diff*btn_color), blue = (int)(blue_diff*btn_color);
         newBtn.setBackgroundColor(Color.rgb(0xFF - red,0xFF - green,0xFF - blue));
 

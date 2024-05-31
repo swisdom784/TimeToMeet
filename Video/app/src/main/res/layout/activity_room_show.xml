@@ -79,13 +79,25 @@
         </ScrollView>
     </HorizontalScrollView>
 
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintRight_toRightOf="parent">
+    <Button
+        android:id="@+id/memoList"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="팀 메모"
+        android:textSize="10sp"/>
     <Button
         android:id="@+id/select"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:text="개인선택"
         android:textSize="10sp"/>
+
+</LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
