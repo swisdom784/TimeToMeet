@@ -45,7 +45,7 @@ public class RoomShowActivity extends AppCompatActivity {
     List<Integer> sum = new ArrayList<>();
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-    Button select;
+    Button select,memo;
     TextView password,roomName;
     int room_num;
 
@@ -160,6 +160,18 @@ public class RoomShowActivity extends AppCompatActivity {
                 finish();
             }
         });
+        memo = findViewById(R.id.memoListBtn);
+        memo.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(RoomShowActivity.this,NoticeBoardActivity.class);
+                intent.putExtra("username",username);
+                intent.putExtra("room_num",room_num);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
     }//onCreate
 
@@ -167,8 +179,6 @@ public class RoomShowActivity extends AppCompatActivity {
     public void onStart(){
         super.onStart();
         //TODO : 각 리스트 element를 클릭하면 USER 가 선택한 시간 표현
-
-
         //username:weight
 
     }//onStart

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Video"
         tools:targetApi="31">
         <activity
+            android:name=".NoticeBoardActivity"
+            android:exported="false" />
+        <activity
             android:name=".RoomGuestActivity"
             android:exported="false" />
         <activity

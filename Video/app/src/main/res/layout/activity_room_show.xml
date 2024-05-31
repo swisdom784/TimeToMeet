@@ -86,7 +86,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintRight_toRightOf="parent">
     <Button
-        android:id="@+id/memoList"
+        android:id="@+id/memoListBtn"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="팀 메모"
