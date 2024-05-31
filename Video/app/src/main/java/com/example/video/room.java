@@ -19,7 +19,6 @@ public class room {
     private Map<String,Integer> time = new HashMap<>();
     private List<Integer> sum = new ArrayList<>();
     private List<message> messageList = new ArrayList<>();
-
     public List<message> getMessageList() {
         return messageList;
     }
