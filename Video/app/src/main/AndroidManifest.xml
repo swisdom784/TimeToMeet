@@ -15,20 +15,13 @@
         android:theme="@style/Theme.Video"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
+
             android:name=".NoticeBoardActivity"
             android:exported="false" />
-=======
+        <activity
             android:name=".SuccessActivity"
             android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-
         </activity>
->>>>>>> main
         <activity
             android:name=".RoomGuestActivity"
             android:exported="false" />
