@@ -5,6 +5,62 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimaryDark">@color/colorYlnMnBlue</item>
     </style>
-
     <style name="Theme.Video" parent="Base.Theme.Video" />
+
+    <style name="BaseAppTheme" parent="android:Theme.Material">
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+    </style>
+
+    <style name="CreateProfileTheme" parent="Theme.AppCompat.Light">
+
+        <!-- 상단 Title 배경색 -->
+        <item name="colorAccent">@color/step6</item>
+
+        <!-- 선택한 날짜 배경 색 -->
+        <item name="colorControlActivated">@color/white</item>
+
+        <!-- Highlight item color-->
+        <item name="colorControlHighlight">@color/black</item>
+
+        <!--Calender Background color -->
+        <item name="android:colorBackground">@color/step8</item>
+
+        <!-- Week TextColor-->
+        <item name="android:textColorSecondary">@color/white</item>
+
+        <!-- Calender Number color arrow color (< >) -->
+        <item name="android:textColorPrimary">@color/white</item>
+
+        <!--day , month TextColor-->
+        <item name="android:textColorPrimaryInverse">@color/colorPrimaryDark</item>
+
+        <!-- year-->
+        <item name="android:textColorSecondaryInverse">@color/colorPrimaryDark</item>
+
+        <!-- 취소/확인버튼 색상 -->
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+
+        <item name="cornerSize">16dp</item>
+
+        <item name="windowActionBar">false</item>
+
+        <item name="windowNoTitle">true</item>
+
+        <item name="fontFamily">@font/mainfont01</item>
+
+    </style>
+
+    <style name="MyBase.TimePicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:background">@color/step8</item>
+        <item name="android:headerBackground">@color/step8</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:colorAccent">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!-- NumberPicker divider color -->
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+    출처: https://goatlab.tistory.com/entry/Android-Studio-TimePicker-색상-커스텀 [GOATLAB:티스토리]
+
 </resources>
