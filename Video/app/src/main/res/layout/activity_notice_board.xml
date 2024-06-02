@@ -2,91 +2,81 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#9DB6D1"
-    tools:context=".RegisterActivity">
-
+    tools:context=".NoticeBoardActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="100dp"
+        android:paddingTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/boardTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bagel_fat_one_regular"
             android:gravity="center"
             android:shadowColor="#507587B2"
             android:shadowRadius="20"
-            android:text="TIME  to  MEET"
-            android:textAlignment="center"
+            android:text="Team Memo"
             android:textColor="#F4F6FA"
-            android:textSize="50sp"
-            android:textStyle="normal"
+            android:textSize="40sp"
+            android:layout_marginTop="40dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
-            android:id="@+id/roomListOrigin"
+            android:id="@+id/memoListView"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="400dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/box3"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/boardTitle"
+            app:layout_constraintBottom_toTopOf="@+id/btn_box"/>
 
         <LinearLayout
-            android:id="@+id/box3"
+            android:id="@+id/btn_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/roomListOrigin"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/memoListView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
             <Button
-                android:id="@+id/makebtn"
+                android:id="@+id/MakeMemoBtn"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#425276"
                 android:layout_marginEnd="10dp"
                 android:textSize="20dp"
-                android:text="Make Room"
+                android:text="Make Memo"
                 android:fontFamily="@font/bagel_fat_one_regular"/>
-
+<!--
+            //메모 수정or삭제 버튼
             <Button
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/entbtn"
+                android:id="@+id/DeleteBtn"
                 android:backgroundTint="#425276"
                 android:layout_marginStart="10dp"
                 android:textSize="20dp"
-                android:text="Enter Room"
+                android:text="Delete Memo"
                 android:fontFamily="@font/bagel_fat_one_regular"/>
-
-
-
+                -->
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-

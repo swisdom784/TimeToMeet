@@ -100,7 +100,7 @@ public class RoomGuestActivity extends AppCompatActivity {
 
                 LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
                         200,
-                        110);
+                        120);
 
                 for(int ii = startTime;ii<=endTime;ii++){
                     TextView tv_time = makeTimeText(ii,btnParams);

@@ -31,67 +31,80 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name">
+            android:layout_marginEnd="20dp">
 
-            <ScrollView
+            <LinearLayout
+                android:id="@+id/everytime"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="5dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name">
 
-                <LinearLayout
-                    android:id="@+id/day_list"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:gravity="center"
+                    android:text="Time"
+                    android:textSize="26sp"
+                    android:textColor="@color/colorYlnMnBlue"
+                    android:fontFamily="@font/bagel_fat_one_regular" />
+
+                <LinearLayout
+                    android:id="@+id/my_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/everytime"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name">
+
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:id="@+id/everytime"
+                        android:id="@+id/day_list"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="5sp">
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Time"
-                            android:textSize="26sp"
-                            android:textColor="@color/colorYlnMnBlue"
-                            android:fontFamily="@font/bagel_fat_one_regular" />
+
 
                         <LinearLayout
-                            android:id="@+id/my_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/my_time_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <!--
-                        <LinearLayout
-                            android:id="@+id/my_time_text"
+                            android:id="@+id/my_time_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical" >
+                            android:orientation="vertical">
+                            <!--
+                            <LinearLayout
+                                android:id="@+id/my_time_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+                -->
+
                         </LinearLayout>
-            -->
 
                     </LinearLayout>
+                </ScrollView>
+            </HorizontalScrollView>
+        </LinearLayout>
 
 
-                </LinearLayout>
-            </ScrollView>
-        </HorizontalScrollView>
-    </LinearLayout>
+        </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

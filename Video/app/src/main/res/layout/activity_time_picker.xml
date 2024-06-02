@@ -1,35 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/step7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".time_picker">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bagel_fat_one_regular"
+        android:gravity="center"
+        android:text="Pick Time"
+        android:textColor="#F4F6FA"
+        android:textSize="60sp"
+        android:textStyle="normal"
+        android:shadowColor="#507587B2"
+        android:shadowRadius="20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
+
     <TimePicker
         android:id="@+id/time_picker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyBase.TimePicker"
+        android:timePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:id="@+id/tv_time"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
         android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="time"
-        android:textColor="@color/black"
-        android:textSize="20sp"/>
+        android:text="choosed time"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@color/step8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_picker"
+        app:layout_constraintVertical_bias="0.2" />
+
     <Button
         android:id="@+id/btn_setting"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:text="set time"
-        android:textSize="20sp"/>
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_picker"
+        app:layout_constraintVertical_bias="0.6"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -167,6 +167,13 @@ public class MakeRoomActivity extends AppCompatActivity {
                 finish();
             }
         });
+        TextView tv_home = findViewById(R.id.back_to_home1);
+        tv_home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                finish();
+            }
+        });
     }//onCreate
     public void clickstartdateBtn(View v){
         Intent datepickIntent = new Intent(getApplicationContext(), date_picker.class);

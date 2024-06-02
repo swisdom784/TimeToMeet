@@ -15,6 +15,14 @@
         android:theme="@style/Theme.Video"
         tools:targetApi="31">
         <activity
+
+            android:name=".NoticeBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SuccessActivity"
+            android:exported="true" >
+        </activity>
+        <activity
             android:name=".RoomGuestActivity"
             android:exported="false" />
         <activity
@@ -48,7 +56,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".date_picker" />
+        <activity
+            android:name=".date_picker"
+            android:exported="true"
+            android:theme="@style/CreateProfileTheme">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity android:name=".time_picker" />
     </application>
 

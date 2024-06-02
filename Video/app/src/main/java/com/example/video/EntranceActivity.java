@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -59,16 +60,16 @@ public class EntranceActivity extends AppCompatActivity {
                 databaseReference = FirebaseDatabase.getInstance().getReference("room");
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot child : snapshot.getChildren()){
-                            if(p.equals(child.child("password").getValue())){
-                                flag[0] = Integer.valueOf(child.getKey());
-                                System.out.println(flag[0]);
-                                break;
-                            }
-                        }
-                        if(flag[0] == 0){
-                            Toast.makeText(EntranceActivity.this,"비밀번호가 일치하지 않습니다",Toast.LENGTH_SHORT).show();
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for(DataSnapshot child : snapshot.getChildren()){
+                                    if(p.equals(child.child("password").getValue())){
+                                        flag[0] = Integer.valueOf(child.getKey());
+                                        System.out.println(flag[0]);
+                                        break;
+                                    }
+                                }
+                                if(flag[0] == 0){
+                                    Toast.makeText(EntranceActivity.this,"비밀번호가 일치하지 않습니다",Toast.LENGTH_SHORT).show();
                         } else {
                             if(!roomList.contains(flag[0])) roomList.add(flag[0]);
                             FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList").setValue(roomList);
@@ -86,5 +87,13 @@ public class EntranceActivity extends AppCompatActivity {
                 });
             }
         });
+        TextView tv_home = findViewById(R.id.back_to_home);
+        tv_home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                finish();
+            }
+        });
+
     }
 }

@@ -18,6 +18,18 @@ public class room {
     private Map<String,Integer> day = new HashMap<>();
     private Map<String,Integer> time = new HashMap<>();
     private List<Integer> sum = new ArrayList<>();
+    private List<message> messageList = new ArrayList<>();
+    public List<message> getMessageList() {
+        return messageList;
+    }
+
+    public void setMessageList(List<message> messageList) {
+        this.messageList = messageList;
+    }
+    public void addMessage(String name, String content){
+        message msg = new message(name,content);
+        this.messageList.add(msg);
+    }
 
     public List<Integer> getSum() {
         return sum;
