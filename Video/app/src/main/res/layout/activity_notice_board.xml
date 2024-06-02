@@ -47,10 +47,10 @@
             app:layout_constraintBottom_toTopOf="@+id/memoEdit"/>
         <EditText
             android:id="@+id/memoEdit"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
-            android:text="Sample Memo Message"
+            android:hint="메세지를 입력하세요."
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toTopOf="@id/btn_box"
