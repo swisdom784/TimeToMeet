@@ -168,7 +168,6 @@ public class RoomShowActivity extends AppCompatActivity {
                 intent.putExtra("username",username);
                 intent.putExtra("room_num",room_num);
                 startActivity(intent);
-                finish();
             }
         });
 

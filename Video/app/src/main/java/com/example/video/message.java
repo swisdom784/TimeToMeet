@@ -1,11 +1,11 @@
 package com.example.video;
 
 public class message {
-    private String user;
+    private String writer;
     private String comment;
 
-    message(String u, String c){
-        this.user = u;
+    message(String c, String u){
+        this.writer = u;
         this.comment = c;
     }
 
@@ -17,11 +17,11 @@ public class message {
         this.comment = comment;
     }
 
-    public String getUser() {
-        return user;
+    public String getWriter() {
+        return writer;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setWriter(String user) {
+        this.writer = user;
     }
 }

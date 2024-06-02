@@ -37,14 +37,24 @@
         <ListView
             android:id="@+id/memoListView"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="15dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/boardTitle"
-            app:layout_constraintBottom_toTopOf="@+id/btn_box"/>
+            app:layout_constraintBottom_toTopOf="@+id/memoEdit"/>
+        <EditText
+            android:id="@+id/memoEdit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:text="Sample Memo Message"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_box"
+            app:layout_constraintTop_toBottomOf="@id/memoListView"/>
 
         <LinearLayout
             android:id="@+id/btn_box"
@@ -52,8 +62,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintTop_toBottomOf="@+id/memoListView"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/memoEdit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
             <Button
@@ -79,4 +89,15 @@
                 -->
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/back_to_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="방으로 돌아가기"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="30dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
