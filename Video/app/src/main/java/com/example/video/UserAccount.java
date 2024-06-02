@@ -9,7 +9,6 @@ public class UserAccount {
     private String password;
     private String emailId;
     private String username;
-
     private List<Integer> roomList;
     public UserAccount(){
     }

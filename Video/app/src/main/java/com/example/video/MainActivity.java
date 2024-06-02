@@ -72,6 +72,20 @@ public class MainActivity extends AppCompatActivity {
                 String strEmail = mEtEmail.getText().toString();
                 String strPwd = mEtPwd.getText().toString();
 
+                String email = mEtEmail.getText().toString().trim();
+                String password = mEtPwd.getText().toString().trim();
+
+                if (email.isEmpty()) {
+                    mEtEmail.setError("Email is required");
+                    mEtEmail.requestFocus();
+                    return;
+                }
+
+                if (password.isEmpty()) {
+                    mEtPwd.setError("Password is required");
+                    mEtPwd.requestFocus();
+                    return;
+                }
                 mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -80,8 +94,6 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             startActivity(intent);
                             overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
-
-//                            finish();
                         } else {
                             Toast.makeText(MainActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
                         }
@@ -99,8 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
 
     }
     @Override
