@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.database.DataSnapshot;
@@ -96,6 +97,7 @@ public class MakeRoomActivity extends AppCompatActivity {
                         days.put("endyear",year);
                         days.put("endmonth",month);
                         days.put("endday",day);
+
                     }
                 }
             });
@@ -107,6 +109,7 @@ public class MakeRoomActivity extends AppCompatActivity {
 
         room = findViewById(R.id.room);
         makebtn = findViewById(R.id.makebtn);
+        //makebtn.setVisibility(View.INVISIBLE);
         Intent follow = getIntent();
         String username = follow.getStringExtra("username");
         final int[] room_num = new int[10];
@@ -142,6 +145,10 @@ public class MakeRoomActivity extends AppCompatActivity {
         makebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!is_timePicked()) {
+                    Toast.makeText(MakeRoomActivity.this,"시간을 제대로 입력하세요",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 List<Integer> weight = new ArrayList<>();
                 List<Integer> sum = new ArrayList<>();
                 for(int i=0;i<(days.get("endday")-days.get("startday")+1)*(time.get("endhour")-time.get("starthour")+1);i++) {
@@ -196,14 +203,14 @@ public class MakeRoomActivity extends AppCompatActivity {
     public boolean is_timePicked(){//TODO : 수정하기
         if(days.get("startyear") == null || days.get("startmonth") == null || days.get("startday") == null) return false;
         if(days.get("endyear") == null || days.get("endmonth") == null || days.get("endday") == null) return false;
-        if(days.get("starthour") == null || days.get("startmin")==null) return false;
-        if(days.get("endhour") == null || days.get("endmin")==null) return false;
+        if(time.get("starthour") == null || time.get("startmin")==null) return false;
+        if(time.get("endhour") == null || time.get("endmin")==null) return false;
 
-        if(days.get("starthour")<=days.get("endhour")
+        if(time.get("starthour")<=time.get("endhour")
                 && days.get("startday")<=days.get("endday")
                 && days.get("startmonth")<=days.get("endmonth")
                 && days.get("startyear")<=days.get("endyear")) return true;
-        return true;
+        return false;
     }
 
 }
