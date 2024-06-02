@@ -31,7 +31,7 @@ import java.util.ListIterator;
 import java.util.Map;
 
 public class MakeRoomActivity extends AppCompatActivity {
-
+//TODO : 시간 똑바로 선택해야지만 방 만들 수 있게 하기
     room r = new room();
     EditText room,password;
     Button makebtn;
@@ -191,6 +191,19 @@ public class MakeRoomActivity extends AppCompatActivity {
     public void clicktimeBtn2(View v){
         Intent timepickIntent = new Intent(getApplicationContext(), time_picker.class);
         time2ActivityResult.launch(timepickIntent);
+    }
+
+    public boolean is_timePicked(){//TODO : 수정하기
+        if(days.get("startyear") == null || days.get("startmonth") == null || days.get("startday") == null) return false;
+        if(days.get("endyear") == null || days.get("endmonth") == null || days.get("endday") == null) return false;
+        if(days.get("starthour") == null || days.get("startmin")==null) return false;
+        if(days.get("endhour") == null || days.get("endmin")==null) return false;
+
+        if(days.get("starthour")<=days.get("endhour")
+                && days.get("startday")<=days.get("endday")
+                && days.get("startmonth")<=days.get("endmonth")
+                && days.get("startyear")<=days.get("endyear")) return true;
+        return true;
     }
 
 }
