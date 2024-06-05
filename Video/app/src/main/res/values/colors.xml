@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_90">#90FFFFFF</color>
     <color name="step0">#FFFFFFFF</color>
     <color name="step1">#FFBECDFF</color>
     <color name="step2">#FFB4C3FF</color>
@@ -17,6 +18,7 @@
     <color name="colorSlateGray">#708090</color>
     <color name="colorCharcoal">#36454F</color>
 
+    <color name="colorAliceBlue">#DDEDF4</color>
     <color name="colorPowderBlue">#9EB9D4</color>
     <color name="colorPrimaryDark">#425276</color>
     <color name="colorYlnMnBlue">#425276</color>
