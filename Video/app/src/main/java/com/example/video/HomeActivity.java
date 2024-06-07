@@ -38,6 +38,8 @@ public class HomeActivity extends AppCompatActivity {
     List<room> roomInfo = new ArrayList<>();
     ArrayList<HomeListElement> elementList = new ArrayList<>();
     ListView roomListView;
+
+    TextView userText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("UserAccount");
         String id = user.getUid();
+        userText = findViewById(R.id.userText);
         mDatabase.child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -53,6 +56,7 @@ public class HomeActivity extends AppCompatActivity {
                 if(u.getRoomList() != null){
                     roomList = u.getRoomList();
                 }
+                userText.setText(name[0]);
 
             }
             @Override
@@ -60,7 +64,6 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-
 
         makebtn = findViewById(R.id.makebtn);
         makebtn.setOnClickListener(new View.OnClickListener(){

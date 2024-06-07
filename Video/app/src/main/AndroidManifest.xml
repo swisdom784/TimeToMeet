@@ -56,11 +56,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".date_picker"
-            android:exported="true"
-            android:theme="@style/CreateProfileTheme">
-        </activity>
-        <activity android:name=".time_picker" />
     </application>
 </manifest>
