@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,6 +32,7 @@ public class RoomMemoFragment extends Fragment {
     private String user_name;
     private int room_num;
     DatabaseReference databaseReference;
+    ScrollView scrollView;
     ListView memoListView;
     EditText memoEdit;
     ImageButton MakeMemoBtn;
@@ -66,6 +68,7 @@ public class RoomMemoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_room_memo, container, false);
+        scrollView = view.findViewById(R.id.mainScrollView);
         memoListView = view.findViewById(R.id.memoListView);
         memoEdit = view.findViewById(R.id.memoEdit);
         MakeMemoBtn = view.findViewById(R.id.MakeMemoBtn);
@@ -104,6 +107,12 @@ public class RoomMemoFragment extends Fragment {
         NoticeBoardListAdapter NBLAdapter = new NoticeBoardListAdapter(getContext(),elementList);
         memoListView.setAdapter(NBLAdapter);
         setListViewHeightBasedOnChildren(memoListView);
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
     }
     private void setMakeMemoBtn(){
         MakeMemoBtn.setOnClickListener(new View.OnClickListener() {
