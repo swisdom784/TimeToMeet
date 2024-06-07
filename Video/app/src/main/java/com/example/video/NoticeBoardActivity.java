@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,7 +40,7 @@ public class NoticeBoardActivity extends AppCompatActivity {
     ValueEventListener valueEventListener;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-    Button MakeMemoBtn;
+    ImageButton MakeMemoBtn;
 
     List<HashMap<String,String>> messageList;
 
