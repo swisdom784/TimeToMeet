@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/linearLayoutMemo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:weightSum="1"
+        android:layout_marginHorizontal="10dp"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/content"
-            android:layout_width="400dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
             android:text="MEMOS_CONTENT"
-            android:textSize="15sp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/writer" />
+            android:textSize="17sp"
+            android:fontFamily="@font/mainfont01"/>
 
         <TextView
             android:id="@+id/writer"
-            android:layout_width="400dp"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:gravity="end"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="5dp"
             android:text="people_name"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            android:textSize="12sp"
+            android:fontFamily="@font/mainfont01"/>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>

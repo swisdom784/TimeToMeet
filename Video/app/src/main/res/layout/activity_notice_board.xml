@@ -1,103 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9DB6D1"
-    tools:context=".NoticeBoardActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mainBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    android:background="@color/colorPowderBlue"
+    tools:context=".NoticeBoardActivity"
+    android:orientation="vertical">
 
         <TextView
             android:id="@+id/boardTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
             android:fontFamily="@font/bagel_fat_one_regular"
             android:gravity="center"
             android:shadowColor="#507587B2"
             android:shadowRadius="20"
             android:text="Team Memo"
             android:textColor="#F4F6FA"
-            android:textSize="40sp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="50sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/round"
+        android:backgroundTint="@color/AntiFlashwhite"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:paddingTop="10dp">
 
         <ListView
             android:id="@+id/memoListView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="15dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/boardTitle"
-            app:layout_constraintBottom_toTopOf="@+id/memoEdit"/>
-        <EditText
-            android:id="@+id/memoEdit"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:hint="메세지를 입력하세요."
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_box"
-            app:layout_constraintTop_toBottomOf="@id/memoListView"/>
+            android:layout_height="370dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="20dp" />
 
         <LinearLayout
-            android:id="@+id/btn_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/memoEdit"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <Button
-                android:id="@+id/MakeMemoBtn"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#425276"
+            android:backgroundTint="@color/white_90"
+            android:background="@drawable/round_bottom"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="8dp"
+            android:weightSum="1">
+            <EditText
+                android:id="@+id/memoEdit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="start"
                 android:layout_marginEnd="10dp"
-                android:textSize="20dp"
-                android:text="Make Memo"
-                android:fontFamily="@font/bagel_fat_one_regular"/>
-<!--
-            //메모 수정or삭제 버튼
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/DeleteBtn"
-                android:backgroundTint="#425276"
-                android:layout_marginStart="10dp"
-                android:textSize="20dp"
-                android:text="Delete Memo"
-                android:fontFamily="@font/bagel_fat_one_regular"/>
-                -->
+                android:fontFamily="@font/mainfont01"
+                android:hint="메세지를 입력하세요." />
+            <ImageButton
+                android:id="@+id/MakeMemoBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/white_send"
+                android:scaleType="centerCrop"
+                android:padding = "5dp"
+                android:background="@drawable/round"
+                android:backgroundTint="@color/colorPowderBlue"/>
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+<!--    //메모 수정or삭제 버튼
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/DeleteBtn"
+            android:backgroundTint="#425276"
+            android:layout_marginStart="10dp"
+            android:textSize="20dp"
+            android:text="Delete Memo"
+            android:fontFamily="@font/bagel_fat_one_regular"/>
+            -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
     <TextView
         android:id="@+id/back_to_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/mainfont01"
         android:text="방으로 돌아가기"
         android:textColor="@color/white"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="30dp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="20sp" />
+</LinearLayout>

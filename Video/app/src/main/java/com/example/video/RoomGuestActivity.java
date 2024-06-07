@@ -99,14 +99,13 @@ public class RoomGuestActivity extends AppCompatActivity {
                 LinearLayout day_list = (LinearLayout)findViewById(R.id.day_list);
 
                 LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
-                        200,
-                        120);
+                        185,
+                        106);
 
                 for(int ii = startTime;ii<=endTime;ii++){
                     TextView tv_time = makeTimeText(ii,btnParams);
                     my_time.addView(tv_time);
                 }//for
-
                 for(int j = startDay; j<=endDay; j++){
                     LinearLayout my_time_text = new LinearLayout(getApplicationContext());
 
@@ -117,11 +116,11 @@ public class RoomGuestActivity extends AppCompatActivity {
                     TextView day_text = new TextView(getApplicationContext());
                     String day = String.valueOf(new StringBuilder().append(j).append("일"));
                     day_text.setText(day);
-                    day_text.setTextSize(23);
+                    day_text.setTextSize(22);
                     day_text.setGravity(Gravity.CENTER);
                     day_text.setTypeface(ResourcesCompat.getFont(getApplicationContext(),R.font.bagel_fat_one_regular));
                     day_text.setTextColor(getResources().getColor(R.color.colorYlnMnBlue));
-                    int padding = 4;
+                    int padding = 3;
                     int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,padding,getResources().getDisplayMetrics());
                     day_text.setPadding(0,0,0,paddingpx);
 
@@ -145,7 +144,7 @@ public class RoomGuestActivity extends AppCompatActivity {
         TextView newTime = new TextView(this);
         newTime.setText(new StringBuilder().append(i).append("시"));
         newTime.setGravity(Gravity.RIGHT);
-        newTime.setTextSize(23);
+        newTime.setTextSize(22);
         newTime.setTypeface(ResourcesCompat.getFont(getApplicationContext(),R.font.bagel_fat_one_regular));
         newTime.setTextColor(getResources().getColor(R.color.colorYlnMnBlue));
         int padding = 5;
@@ -168,12 +167,12 @@ public class RoomGuestActivity extends AppCompatActivity {
         // 테두리 모양 생성
         GradientDrawable border = new GradientDrawable();
         if(weight.get(a) == 0)
-            border.setColor(Color.WHITE);
+            border.setColor(getResources().getColor(R.color.white_90));
         else
             border.setColor(getResources().getColor(R.color.colorPowderBlue));
 //        border.setColor(Color.BLUE); // 배경색 투명
-        border.setStroke(3, getResources().getColor(R.color.colorCadetGray));// 테두리 두께와 색상
-        border.setCornerRadius(1); // 모서리 곡률
+        border.setStroke(2, getResources().getColor(R.color.colorCadetGray));// 테두리 두께와 색상
+        border.setCornerRadius(0); // 모서리 곡률
 
         // 테두리를 Button에 설정
         newBtn.setBackground(border);
