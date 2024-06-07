@@ -2,6 +2,7 @@ package com.example.video;
 
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -175,10 +176,15 @@ public class RoomHomeFragment extends Fragment {
         int green_diff = 0xFF - 0x50;
         int blue_diff = 0xFF - 0x90;
         int red = (int) (red_diff * btn_color), green = (int) (green_diff * btn_color), blue = (int) (blue_diff * btn_color);
-        newBtn.setBackgroundColor(Color.rgb(0xFF - red, 0xFF - green, 0xFF - blue));
+//        newBtn.setBackgroundColor(Color.rgb(0xFF - red, 0xFF - green, 0xFF - blue));
+        GradientDrawable border = new GradientDrawable();
 
-        newBtn.setId(a);
-        newBtn.setText(String.valueOf(a++));
+        border.setColor(Color.rgb(0xFF - red, 0xFF - green, 0xFF - blue));
+//        border.setColor(Color.BLUE); // 배경색 투명
+        border.setStroke(2, getResources().getColor(R.color.colorCadetGray));// 테두리 두께와 색상
+        border.setCornerRadius(0); // 모서리 곡률
+        newBtn.setBackground(border);
+        newBtn.setId(a++);
         newBtn.setGravity(Gravity.CENTER);
         newBtn.setOnClickListener(new View.OnClickListener() {
             @Override

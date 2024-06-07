@@ -1,5 +1,6 @@
 package com.example.video;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -190,12 +191,22 @@ public class RoomChoiceFragment extends Fragment {
     public TextView makeBtn(int i,LinearLayout.LayoutParams btnParams){
         TextView newBtn = new TextView(getContext());
         newBtn.setLayoutParams(btnParams);
+
+        GradientDrawable border = new GradientDrawable();
         if(weight.get(a) == 0)
-            newBtn.setBackgroundColor(getResources().getColor(R.color.white_90));
+            border.setColor(getResources().getColor(R.color.white_90));
         else
-            newBtn.setBackgroundColor(getResources().getColor(R.color.colorPowderBlue));
-        newBtn.setId(a);
-        newBtn.setText(String.valueOf(a++));
+            border.setColor(getResources().getColor(R.color.colorPowderBlue));
+//        border.setColor(Color.BLUE); // 배경색 투명
+        border.setStroke(2, getResources().getColor(R.color.colorCadetGray));// 테두리 두께와 색상
+        border.setCornerRadius(0); // 모서리 곡률
+        // 테두리를 Button에 설정
+        newBtn.setBackground(border);
+//        if(weight.get(a) == 0)
+//            newBtn.setBackgroundColor(getResources().getColor(R.color.white_90));
+//        else
+//            newBtn.setBackgroundColor(getResources().getColor(R.color.colorPowderBlue));
+        newBtn.setId(a++);
         //newBtn.setBackgroundResource(R.drawable.textview_margin);
         newBtn.setGravity(Gravity.CENTER);
         newBtn.setOnClickListener(new View.OnClickListener() {
@@ -204,12 +215,12 @@ public class RoomChoiceFragment extends Fragment {
 //                long now_tag = (long)newBtn.getTag();
                 int id = newBtn.getId();
                 if(weight.get(id) == 0){
-                    newBtn.setBackgroundColor(getResources().getColor(R.color.colorPowderBlue));
+                    border.setColor(getResources().getColor(R.color.colorPowderBlue));
 //                    newBtn.setTag(1L);
                     weight.set(id, 1L);
                     sum.set(id,sum.get(id)+1);
                 }else if(weight.get(id) == 1){
-                    newBtn.setBackgroundColor(getResources().getColor(R.color.white_90));
+                    border.setColor(getResources().getColor(R.color.white_90));
 //                    newBtn.setTag(0L);
                     weight.set(id,0L);
                     sum.set(id,sum.get(id)-1);
