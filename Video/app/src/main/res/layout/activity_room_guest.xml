@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_a">
+    android:background="@drawable/background_a"
+    tools:context=".RoomGuestActivity">
 
     <LinearLayout
         android:id="@+id/main"
@@ -13,8 +14,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".RoomGuestActivity">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/name"
