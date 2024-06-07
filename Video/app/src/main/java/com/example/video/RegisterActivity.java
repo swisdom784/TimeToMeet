@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mEtEmail,mEtPwd,mEtName;
     Button mEtnRegister;
 
-    TextView pwCheck,emCheck,nameCheck;
+    TextView pwCheck,emCheck,nameCheck,tv_main;
 
     List<String> nickname;
     @Override
@@ -59,6 +59,14 @@ public class RegisterActivity extends AppCompatActivity {
         pwCheck = findViewById(R.id.pwcheckText);
         emCheck = findViewById(R.id.pwcheckText2);
         nameCheck = findViewById(R.id.pwcheckText3);
+
+        tv_main = findViewById(R.id.back_to_main1);
+        tv_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         mEtEmail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -117,6 +125,28 @@ public class RegisterActivity extends AppCompatActivity {
                 String strEmail = mEtEmail.getText().toString();
                 String strPwd = mEtPwd.getText().toString();
                 String strName = mEtName.getText().toString();
+
+                String email = mEtEmail.getText().toString().trim();
+                String password = mEtPwd.getText().toString().trim();
+                String name = mEtName.getText().toString().trim();
+
+                if (email.isEmpty()) {
+                    mEtEmail.setError("Email is required");
+                    mEtEmail.requestFocus();
+                    return;
+                }
+
+                if (password.isEmpty()) {
+                    mEtPwd.setError("Password is required");
+                    mEtPwd.requestFocus();
+                    return;
+                }
+
+                if (name.isEmpty()) {
+                    mEtName.setError("Name is required");
+                    mEtName.requestFocus();
+                    return;
+                }
 
                 for(String k: nickname){
                     if(strName.equals(k)){

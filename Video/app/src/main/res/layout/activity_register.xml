@@ -231,6 +231,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/back_to_main1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="로그인 페이지로 돌아가기"
