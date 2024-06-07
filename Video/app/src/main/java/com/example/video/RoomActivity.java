@@ -2,10 +2,12 @@ package com.example.video;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -92,8 +94,8 @@ public class RoomActivity extends AppCompatActivity {
                 LinearLayout day_list = (LinearLayout)findViewById(R.id.day_list);
 
                 LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
-                        200,
-                        100);
+                        185,
+                        106);
 
                 for(int ii = startTime;ii<=endTime;ii++){
                     TextView tv_time = makeTimeText(ii,btnParams);
@@ -110,8 +112,13 @@ public class RoomActivity extends AppCompatActivity {
                     TextView day_text = new TextView(getApplicationContext());
                     String day = String.valueOf(new StringBuilder().append(j).append("일"));
                     day_text.setText(day);
-                    day_text.setTextSize(26);
+                    day_text.setTextSize(22);
                     day_text.setGravity(Gravity.CENTER);
+                    day_text.setTypeface(ResourcesCompat.getFont(getApplicationContext(),R.font.bagel_fat_one_regular));
+                    day_text.setTextColor(getResources().getColor(R.color.colorYlnMnBlue));
+                    int padding = 3;
+                    int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,padding,getResources().getDisplayMetrics());
+                    day_text.setPadding(0,0,0,paddingpx);
 
                     my_time_text.addView(day_text);
                     for(int ii = startTime;ii<=endTime;ii++){
@@ -153,7 +160,12 @@ public class RoomActivity extends AppCompatActivity {
         TextView newTime = new TextView(this);
         newTime.setText(new StringBuilder().append(i).append("시"));
         newTime.setGravity(Gravity.RIGHT);
-        newTime.setTextSize(26);
+        newTime.setTextSize(22);
+        newTime.setTypeface(ResourcesCompat.getFont(getApplicationContext(),R.font.bagel_fat_one_regular));
+        newTime.setTextColor(getResources().getColor(R.color.colorYlnMnBlue));
+        int padding = 5;
+        int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,padding,getResources().getDisplayMetrics());
+        newTime.setPadding(15,paddingpx,0,paddingpx);
         return newTime;
     }
     int a;
@@ -165,9 +177,9 @@ public class RoomActivity extends AppCompatActivity {
         newBtn.setLayoutParams(btnParams);
 //        newBtn.setTag(weight.get(a));
         if(weight.get(a) == 0)
-            newBtn.setBackgroundColor(Color.WHITE);
+            newBtn.setBackgroundColor(getResources().getColor(R.color.white_90));
         else
-            newBtn.setBackgroundColor(Color.BLUE);
+            newBtn.setBackgroundColor(getResources().getColor(R.color.colorPowderBlue));
         newBtn.setId(a);
         newBtn.setText(String.valueOf(a++));
         //newBtn.setBackgroundResource(R.drawable.textview_margin);
@@ -178,12 +190,12 @@ public class RoomActivity extends AppCompatActivity {
 //                long now_tag = (long)newBtn.getTag();
                 int id = newBtn.getId();
                 if(weight.get(id) == 0){
-                    newBtn.setBackgroundColor(Color.BLUE);
+                    newBtn.setBackgroundColor(getResources().getColor(R.color.colorPowderBlue));
 //                    newBtn.setTag(1L);
                     weight.set(id, 1L);
                     sum.set(id,sum.get(id)+1);
                 }else if(weight.get(id) == 1){
-                    newBtn.setBackgroundColor(Color.WHITE);
+                    newBtn.setBackgroundColor(getResources().getColor(R.color.white_90));
 //                    newBtn.setTag(0L);
                     weight.set(id,0L);
                     sum.set(id,sum.get(id)-1);
