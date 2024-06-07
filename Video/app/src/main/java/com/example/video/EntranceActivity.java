@@ -31,7 +31,7 @@ public class EntranceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance);
-        overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
         String username = getIntent().getStringExtra("username");
         String id = getIntent().getStringExtra("userid");
