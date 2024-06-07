@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             startActivity(intent);
-                            overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         } else {
                             Toast.makeText(MainActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
                         }

@@ -61,6 +61,5 @@
         <!-- NumberPicker divider color -->
         <item name="colorControlNormal">@android:color/white</item>
     </style>
-    출처: https://goatlab.tistory.com/entry/Android-Studio-TimePicker-색상-커스텀 [GOATLAB:티스토리]
 
 </resources>

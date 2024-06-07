@@ -69,9 +69,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
-                    emCheck.setTextColor(Color.WHITE); // Valid email format
+                    emCheck.setVisibility(View.INVISIBLE);
                 } else {
-                    emCheck.setTextColor(Color.RED); // Invalid email format
+                    emCheck.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -89,9 +89,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() >= 6) {
-                    pwCheck.setTextColor(Color.WHITE);
+                    pwCheck.setVisibility(View.INVISIBLE);
                 } else {
-                    pwCheck.setTextColor(Color.RED);
+                    pwCheck.setVisibility(View.VISIBLE);
                 }
             }
 
