@@ -136,7 +136,7 @@ public class RoomActivity extends AppCompatActivity {
         });
         okbtn = findViewById(R.id.okbtn);
         okbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
+                @Override
             public void onClick(View v) {
                 room.setSum(sum);
                 map.replace(username,weight);
