@@ -1,5 +1,6 @@
 package com.example.video;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -10,12 +11,15 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,9 +28,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,6 +51,8 @@ public class RoomHomeFragment extends Fragment {
     final int[] meet = new int[10];
     int startDay = 1, endDay = 4, startTime = 7, endTime = 11;
     List<Integer> sum = new ArrayList<>();
+
+    Map<String,Object> guest = new HashMap<>();
 
     public RoomHomeFragment() {
         // Required empty public constructor
@@ -76,7 +86,6 @@ public class RoomHomeFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         loadDataFromDatabase();
-
         return view;
     }
 
@@ -109,7 +118,7 @@ public class RoomHomeFragment extends Fragment {
         endDay = meet[3];
         startTime = meet[4];
         endTime = meet[5];
-
+        guest = r.getGuest();
         LinearLayout.LayoutParams dayparams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -184,14 +193,56 @@ public class RoomHomeFragment extends Fragment {
         border.setStroke(2, getResources().getColor(R.color.colorCadetGray));// 테두리 두께와 색상
         border.setCornerRadius(0); // 모서리 곡률
         newBtn.setBackground(border);
+        newBtn.setTag(a);
         newBtn.setId(a++);
         newBtn.setGravity(Gravity.CENTER);
         newBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //시간을 클릭했을 때 나오는 메세지
+                showPopupWindow(v,(Integer)newBtn.getTag());
             }
         });
         return newBtn;
+    }
+    private void showPopupWindow(View anchorView,int Btntag) {
+        // Inflate the popup_layout.xml
+        Context context;
+        context = anchorView.getContext();
+        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_layout, null);
+        TextView textView = popupView.findViewById(R.id.checkname);
+        String nameText = "";
+        ArrayList<String> nameList = new ArrayList<>(guest.keySet());
+
+        for(String s : nameList)
+        {
+            ArrayList<Long> check;
+            check = (ArrayList<Long>)guest.get(s);
+            if(check.get(Btntag) == 1)
+            {
+                nameText = nameText+s+'\n';
+            }
+        }
+
+        textView.setText(nameText);
+
+        // Create the PopupWindow
+        int width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // Lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        // Show the popup window
+        popupWindow.showAsDropDown(anchorView);
+
+        // Dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
     }
 }
