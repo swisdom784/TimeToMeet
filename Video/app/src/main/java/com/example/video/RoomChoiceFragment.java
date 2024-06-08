@@ -126,9 +126,9 @@ public class RoomChoiceFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
-                                    Toast.makeText(getContext(),"저장 성공",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(),"저장에 성공했어요",Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(getContext(),"저장 실패",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(),"저장에 실패했어요",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -230,8 +230,4 @@ public class RoomChoiceFragment extends Fragment {
         });
         return newBtn;
     }
-    private void setOkBtn(){
-
-    }
-
 }
