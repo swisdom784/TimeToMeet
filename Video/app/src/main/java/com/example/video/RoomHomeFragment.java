@@ -125,7 +125,7 @@ public class RoomHomeFragment extends Fragment {
 
         LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
                 185,
-                106);
+                117);
 
         for (int ii = startTime; ii <= endTime; ii++) {
             TextView tv_time = makeTimeText(ii, btnParams);
@@ -212,20 +212,22 @@ public class RoomHomeFragment extends Fragment {
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_layout, null);
         TextView textView = popupView.findViewById(R.id.checkname);
-        String nameText = "";
+        StringBuilder nameText = new StringBuilder();
         ArrayList<String> nameList = new ArrayList<>(guest.keySet());
 
         for(String s : nameList)
         {
-            ArrayList<Long> check;
-            check = (ArrayList<Long>)guest.get(s);
-            if(check.get(Btntag) == 1)
-            {
-                nameText = nameText+s+'\n';
+            ArrayList<Long> check = (ArrayList<Long>)guest.get(s);
+            if(check.get(Btntag) == 1){
+                nameText.append(s).append('\n');
             }
         }
-
-        textView.setText(nameText);
+        if(nameText.length()>0) {
+            nameText.insert(0, "선택한 사람\n");
+            nameText.setLength(nameText.length()-1);}
+        else nameText.append("선택한 사람이 없어요");
+        String finalText = nameText.toString();
+        textView.setText(finalText);
 
         // Create the PopupWindow
         int width = ViewGroup.LayoutParams.WRAP_CONTENT;
