@@ -56,6 +56,11 @@ public class EntranceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 password = findViewById(R.id.password);
                 String p = password.getText().toString();
+                if(p.isEmpty()){
+                    Toast.makeText(EntranceActivity.this,"비밀번호를 입력하세요\n비밀번호는 16자리입니다",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 final int[] flag = {0};
                 databaseReference = FirebaseDatabase.getInstance().getReference("room");
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
