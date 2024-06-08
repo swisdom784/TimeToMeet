@@ -141,7 +141,7 @@ public class RoomChoiceFragment extends Fragment {
 
         LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
                 185,
-                106);
+                117);
 
         for (int ii = startTime; ii <= endTime; ii++) {
             TextView tv_time = makeTimeText(ii, btnParams);

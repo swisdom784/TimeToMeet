@@ -4,11 +4,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@drawable/bottom_sheet_background">
+    android:background="@drawable/popup_backtround">
 
     <TextView
         android:id="@+id/checkname"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mainfont01"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
 
 </LinearLayout>

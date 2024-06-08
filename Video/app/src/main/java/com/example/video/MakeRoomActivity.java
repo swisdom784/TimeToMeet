@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class MakeRoomActivity extends AppCompatActivity implements DatePickerListener, TimePickerListener {
     room r = new room();
-    EditText room, password;
+    EditText roomName, password;
 
     DatabaseReference mdatabase = FirebaseDatabase.getInstance().getReference();
     Map<String, Integer> time = new HashMap<>();
@@ -65,6 +65,7 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
     }//onCreate
 
     public void setDateNTime(){
+        roomName = findViewById(R.id.roomName);
         start_date = findViewById(R.id.datetext_btn1); //tvs
         end_date = findViewById(R.id.datetext_btn2);
         start_time = findViewById(R.id.timetext_btn1);
@@ -161,18 +162,11 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
         if (time.get("starthour") == null || time.get("startmin") == null) return false;
         if (time.get("endhour") == null || time.get("endmin") == null) return false;
 
-        if (time.get("starthour") <= time.get("endhour")
-                && days.get("startday") <= days.get("endday")
-                && days.get("startmonth") <= days.get("endmonth")
-                && days.get("startyear") <= days.get("endyear")){
-            if(days.get("endday")-days.get("startday") >= 21) return false;
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public void MAKE_A_ROOM(){
-        room = findViewById(R.id.room);
+
         Intent follow = getIntent();
         String username = follow.getStringExtra("username");
         final int[] room_num = new int[10];
@@ -203,12 +197,31 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
             @Override
             public void onClick(View v) {
                 if (!is_timePicked()) {
-                    if(days.get("endday")-days.get("startday") >= 21){
-                        Toast.makeText(MakeRoomActivity.this, "모임 날짜를 20일 안으로 선택하세요", Toast.LENGTH_SHORT).show();
-                    }
                     Toast.makeText(MakeRoomActivity.this, "시간 입력 오류\n시간이 제대로 입력되지 않았습니다", Toast.LENGTH_SHORT).show();
                     return;
+                }if(days.get("endyear") - days.get("startyear") != 0){
+                    Toast.makeText(MakeRoomActivity.this, "서로 다른 년도는 선택할 수 없습니다", Toast.LENGTH_SHORT).show();
+                    return;
+                }if(days.get("endmonth") - days.get("startmonth") != 0){
+                    Toast.makeText(MakeRoomActivity.this, "서로 다른 달은 선택할 수 없습니다", Toast.LENGTH_SHORT).show();
+                    return;
+                }if(days.get("endday")-days.get("startday") >= 21){
+                    Toast.makeText(MakeRoomActivity.this, "모임 날짜를 20일 안으로 선택하세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }if(time.get("endhour") - time.get("starthour") > 10){
+                    Toast.makeText(MakeRoomActivity.this, "모임 시간을 10시간 안으로 선택하세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }if(time.get("starthour") >= time.get("endhour")){
+                    Toast.makeText(MakeRoomActivity.this, "시작 시간은 종료 시간보다 같거나 클 수 없습니다", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                String room_name = roomName.getText().toString();
+                if(room_name.isEmpty()){
+                    Toast.makeText(MakeRoomActivity.this, "방 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 List<Integer> weight = new ArrayList<>();
                 List<Integer> sum = new ArrayList<>();
                 for (int i = 0; i < (days.get("endday") - days.get("startday") + 1) * (time.get("endhour") - time.get("starthour") + 1); i++) {
@@ -219,7 +232,7 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
                 Map<String, Object> s = new HashMap<>();
                 s.put(username, weight);
 
-                r.setname(room.getText().toString());
+                r.setname(room_name);
                 r.setPassword(HashKeyGenerator.generateRandomHashKey());
                 r.setOwner(username);
                 r.setGuest(s);
