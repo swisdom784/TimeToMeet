@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -126,10 +127,10 @@ public class RoomChoiceFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
-                                    Toast.makeText(getContext(),"저장에 성공했어요",Toast.LENGTH_SHORT).show();
+                                    showCustomToast("저장에 성공했어요");
                                 } else {
-                                    Toast.makeText(getContext(),"저장에 실패했어요",Toast.LENGTH_SHORT).show();
-                                }
+                                    showCustomToast("저장에 실패했어요");
+                                    }
                             }
                         });
             }
@@ -229,5 +230,20 @@ public class RoomChoiceFragment extends Fragment {
             }
         });
         return newBtn;
+    }
+    private void showCustomToast(String message) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(message);
+
+        ImageView image = layout.findViewById(R.id.toast_image);
+        image.setImageResource(R.drawable.logo01); // 원하는 아이콘 리소스 설정
+
+        Toast toast = new Toast(getContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }

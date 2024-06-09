@@ -13,10 +13,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         } else {
-                            Toast.makeText(MainActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                            showCustomToast("로그인에 실패했어요\n아이디나 비밀번호를 확인해주세요");
                         }
                     }
                 });
@@ -123,5 +126,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    private void showCustomToast(String message) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, null);
 
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(message);
+
+        ImageView image = layout.findViewById(R.id.toast_image);
+        image.setImageResource(R.drawable.logo01); // 원하는 아이콘 리소스 설정
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
 }

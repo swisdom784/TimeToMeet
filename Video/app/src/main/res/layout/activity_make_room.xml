@@ -28,13 +28,15 @@
         android:id="@+id/roomName"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="67dp"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         android:background="@drawable/round"
         android:backgroundTint="#70F4F6FA"
         android:padding="7dp"
         android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:fontFamily="@font/mainfont01"
+        android:textSize="20sp"
         android:hint="  방 이름 입력"/>
 
     <Button
@@ -56,9 +58,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/makebtn"
-        android:layout_marginTop="10dp">
-
-<<<<<<< HEAD
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
         <android.widget.Button
             android:id="@+id/start_date_btn"
             android:layout_width="330dp"
@@ -69,10 +71,6 @@
             android:backgroundTint="#425276"
             android:background="@drawable/round"
             android:layout_marginTop="5sp"
-            app:layout_constraintTop_toBottomOf="@+id/makebtn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:text="모임 시작일 선택"
             android:layout_gravity="center"/>
         <android.widget.Button
@@ -85,62 +83,46 @@
             android:backgroundTint="#425276"
             android:background="@drawable/round"
             android:layout_marginTop="8sp"
-            app:layout_constraintTop_toBottomOf="@+id/start_datepicker_btn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:text="모임 종료일 선택"
             android:layout_gravity="center"/>
-
         <android.widget.Button
             android:id="@+id/start_time_btn"
             android:layout_width="330dp"
             android:layout_height="wrap_content"
-            android:text="시작 시간 선택"
+            android:text="모임 시작 시간 선택"
             android:layout_gravity="center"
             android:textSize="25sp"
             android:textColor="@color/white"
             android:fontFamily="@font/mainfont01"
             android:backgroundTint="#425276"
             android:background="@drawable/round"
-            android:layout_marginTop="8sp"
-            app:layout_constraintTop_toBottomOf="@+id/end_datepicker_btn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginTop="8sp" />
         <android.widget.Button
             android:id="@+id/end_time_btn"
             android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:textSize="25sp"
-            android:text="끝 시간 선택"
+            android:text="모임 종료 시간 선택"
             android:textColor="@color/white"
             android:fontFamily="@font/mainfont01"
             android:layout_gravity="center"
             android:backgroundTint="#425276"
             android:background="@drawable/round"
-            android:layout_marginTop="8sp"
-            app:layout_constraintTop_toBottomOf="@+id/timepicker_btn1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-=======
->>>>>>> 8c74efb537e4756c2efca2e77614b794d816ead5
+            android:layout_marginTop="8sp" />
+
         <TextView
             android:id="@+id/datetext_btn1"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="25dp"
             android:text="모임 시작 날짜"
             android:fontFamily="@font/mainfont01"
             android:textSize="20sp"
             android:layout_marginTop="5sp"/>
         <TextView
             android:id="@+id/datetext_btn2"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="25dp"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center"
@@ -150,7 +132,7 @@
             android:layout_marginTop="5sp"/>
         <TextView
             android:id="@+id/timetext_btn1"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="25dp"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center"
@@ -160,16 +142,16 @@
             android:layout_marginTop="5sp"/>
         <TextView
             android:id="@+id/timetext_btn2"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="25dp"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center"
-<<<<<<< HEAD
-            android:text="모임 끝 시간"
+            android:text="모임 종료 시간"
             android:fontFamily="@font/mainfont01"
             android:textSize="20sp"
             android:layout_marginTop="5sp"/>
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/back_to_home1"
@@ -183,76 +165,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="30dp"/>
-=======
-            android:text="모임 종료 시간"/>
-
-        <Button
-            android:id="@+id/start_date_btn"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:backgroundTint="#425276"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/timetext_btn2"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="시작 날짜 선택"
-            android:layout_gravity="center"
-            android:fontFamily="@font/nanum_pen_script_regular"/>
-
-        <Button
-            android:id="@+id/start_time_btn"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:backgroundTint="#425276"
-            app:layout_constraintTop_toBottomOf="@+id/start_date_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="시작 시간 선택"
-            android:layout_gravity="center"
-            android:fontFamily="@font/nanum_pen_script_regular"/>
-        <Button
-            android:id="@+id/end_date_btn"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:backgroundTint="#425276"
-            app:layout_constraintTop_toBottomOf="@+id/start_time_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="종료 날짜 선택"
-            android:layout_gravity="center"
-            android:fontFamily="@font/nanum_pen_script_regular"/>
-
-        <Button
-            android:id="@+id/end_time_btn"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:fontFamily="@font/nanum_pen_script_regular"
-            android:backgroundTint="#425276"
-            app:layout_constraintTop_toBottomOf="@+id/end_date_btn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="종료 시간 선택"
-            android:layout_gravity="center"/>
-
-    </LinearLayout>
-
-<!--    <TextView-->
-<!--        android:id="@+id/back_to_home1"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="홈 화면으로 돌아가기"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="17sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        android:layout_marginBottom="30dp"/>-->
->>>>>>> 8c74efb537e4756c2efca2e77614b794d816ead5
 
 </androidx.constraintlayout.widget.ConstraintLayout>

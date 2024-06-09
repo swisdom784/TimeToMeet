@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +59,7 @@ public class EntranceActivity extends AppCompatActivity {
                 password = findViewById(R.id.password);
                 String p = password.getText().toString();
                 if(p.isEmpty()){
-                    Toast.makeText(EntranceActivity.this,"비밀번호를 입력하세요\n비밀번호는 16자리입니다",Toast.LENGTH_SHORT).show();
+                    showCustomToast("비밀번호를 입력하세요\n비밀번호는 16자리입니다");
                     return;
                 }
 
@@ -74,7 +76,7 @@ public class EntranceActivity extends AppCompatActivity {
                                     }
                                 }
                                 if(flag[0] == 0){
-                                    Toast.makeText(EntranceActivity.this,"비밀번호가 일치하지 않습니다",Toast.LENGTH_SHORT).show();
+                                    showCustomToast("비밀번호가 일치하지 않습니다");
                         } else {
                             if(!roomList.contains(flag[0])) roomList.add(flag[0]);
                             FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList").setValue(roomList);
@@ -100,5 +102,20 @@ public class EntranceActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void showCustomToast(String message) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(message);
+
+        ImageView image = layout.findViewById(R.id.toast_image);
+        image.setImageResource(R.drawable.logo01); // 원하는 아이콘 리소스 설정
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }

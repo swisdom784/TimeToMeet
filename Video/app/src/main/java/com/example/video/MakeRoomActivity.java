@@ -11,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +46,13 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
     private static final String TAG_BOTTOM_SHEET = "bottom_sheet_date_picker";
     Button makebtn, start_date_set, end_date_set, start_time_set, end_time_set;
     TextView start_date, end_date, start_time,end_time;
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (isFinishing()) {
+            overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +67,7 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
         tv_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
     }//onCreate
@@ -197,28 +205,32 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
             @Override
             public void onClick(View v) {
                 if (!is_timePicked()) {
-                    Toast.makeText(MakeRoomActivity.this, "시간 입력 오류\n시간이 제대로 입력되지 않았습니다", Toast.LENGTH_SHORT).show();
+                    showCustomToast("시간 입력 오류\n시간이 제대로 입력되지 않았습니다");
                     return;
                 }if(days.get("endyear") - days.get("startyear") != 0){
-                    Toast.makeText(MakeRoomActivity.this, "서로 다른 년도는 선택할 수 없습니다", Toast.LENGTH_SHORT).show();
+                    showCustomToast("서로 다른 년도는 선택할 수 없습니다");
                     return;
                 }if(days.get("endmonth") - days.get("startmonth") != 0){
-                    Toast.makeText(MakeRoomActivity.this, "서로 다른 달은 선택할 수 없습니다", Toast.LENGTH_SHORT).show();
+                    showCustomToast("서로 다른 달은 선택할 수 없습니다");
                     return;
                 }if(days.get("endday")-days.get("startday") >= 21){
-                    Toast.makeText(MakeRoomActivity.this, "모임 날짜를 20일 안으로 선택하세요", Toast.LENGTH_SHORT).show();
+                    showCustomToast("모임 날짜를 20일 안으로 선택하세요");
                     return;
                 }if(time.get("endhour") - time.get("starthour") > 10){
-                    Toast.makeText(MakeRoomActivity.this, "모임 시간을 10시간 안으로 선택하세요", Toast.LENGTH_SHORT).show();
+                    showCustomToast("모임 시간을 10시간 안으로 선택하세요");
                     return;
                 }if(time.get("starthour") >= time.get("endhour")){
-                    Toast.makeText(MakeRoomActivity.this, "시작 시간은 종료 시간보다 같거나 클 수 없습니다", Toast.LENGTH_SHORT).show();
+                    showCustomToast("시작 시간은 종료 시간보다 같거나 클 수 없습니다");
                     return;
                 }
 
                 String room_name = roomName.getText().toString();
                 if(room_name.isEmpty()){
-                    Toast.makeText(MakeRoomActivity.this, "방 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+                    showCustomToast("방 이름을 입력해주세요");
+                    return;
+                }
+                if(room_name.length()>19){
+                    showCustomToast("방 이름은 18자 이내로만 가능합니다");
                     return;
                 }
 
@@ -244,9 +256,24 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
                 mdatabase.child(String.valueOf(room_num[0] + 1)).setValue(r);
                 mdatabase = FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList");
                 mdatabase.setValue(roomList);
-                finish();
+                onBackPressed();
             }
         });
+    }
+    private void showCustomToast(String message) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(message);
+
+        ImageView image = layout.findViewById(R.id.toast_image);
+        image.setImageResource(R.drawable.logo01); // 원하는 아이콘 리소스 설정
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 
 }

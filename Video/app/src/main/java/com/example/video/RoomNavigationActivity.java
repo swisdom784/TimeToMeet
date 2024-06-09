@@ -33,6 +33,7 @@ public class RoomNavigationActivity extends AppCompatActivity {
         // 백스택에 있는 모든 프래그먼트를 제거하고 액티비티를 종료
         getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         super.onBackPressed();
+        overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
     }
 
     @Override
