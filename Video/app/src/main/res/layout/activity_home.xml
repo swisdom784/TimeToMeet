@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#9DB6D1"
+    android:padding="20dp"
     tools:context=".RegisterActivity">
 
 
     <LinearLayout
         android:id="@+id/mainBox"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginVertical="50dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
@@ -23,91 +25,120 @@
             android:gravity="center_horizontal"
             android:shadowColor="#507587B2"
             android:shadowRadius="20"
-            android:text="TIME  to  MEET"
+            android:text="TIME to MEET"
             android:textColor="#F4F6FA"
-            android:textSize="50sp" />
+            android:textSize="30sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="50dp">
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginVertical="20dp">
+
             <TextView
                 android:id="@+id/userText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="사용자"
-                android:textSize="37sp"
-                android:textColor="#F4F6FA"
                 android:fontFamily="@font/mainfont01"
-                android:textStyle="bold"/>
+                android:text="사용자"
+                android:textColor="#F4F6FA"
+                android:textSize="37sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/mainfont01"
                 android:text=" 님의 약속 리스트"
                 android:textColor="#F4F6FA"
                 android:textSize="23sp"
-                android:fontFamily="@font/mainfont01"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/roomListOrigin"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:layout_marginHorizontal="23dp"
-            android:layout_marginTop="15dp" />
-
-        <LinearLayout
-            android:id="@+id/box3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginHorizontal="30dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <android.widget.Button
-                android:id="@+id/makebtn"
-                android:background="@drawable/round"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:paddingHorizontal="17dp"
-                android:backgroundTint="#425276"
-                android:layout_marginEnd="10dp"
-                android:textSize="15dp"
-                android:text="Create Room"
-                android:textColor="#F4F6FA"
-                android:fontFamily="@font/bagel_fat_one_regular"/>
-
-            <android.widget.Button
-                android:id="@+id/entbtn"
-                android:background="@drawable/round"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:paddingVertical="8dp"
-                android:paddingHorizontal="17dp"
-                android:backgroundTint="#425276"
-                android:textSize="15dp"
-                android:text="Enter Room"
-                android:textColor="#F4F6FA"
-                android:fontFamily="@font/bagel_fat_one_regular"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginHorizontal="23dp"
+        android:background="@drawable/round_corner"
+        android:backgroundTint="@color/white"
+        android:padding="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/box3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainBox">
+
+
+        <ListView
+            android:id="@+id/roomListOrigin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/box3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <android.widget.Button
+            android:id="@+id/makebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/round"
+            android:backgroundTint="#425276"
+            android:fontFamily="@font/bagel_fat_one_regular"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="8dp"
+            android:text="Create Room"
+            android:textColor="#F4F6FA"
+            android:textSize="15dp" />
+
+        <android.widget.Button
+            android:id="@+id/entbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round"
+            android:backgroundTint="#425276"
+            android:fontFamily="@font/bagel_fat_one_regular"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="8dp"
+            android:text="Enter Room"
+            android:textColor="#F4F6FA"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

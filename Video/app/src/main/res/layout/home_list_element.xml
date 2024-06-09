@@ -4,18 +4,20 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <ImageView
+            android:padding="7dp"
+            android:layout_marginEnd="2dp"
             android:id="@+id/logoImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="10dp"
             app:srcCompat="@drawable/logo01"/>
         <TextView
             android:id="@+id/roomNumber"
