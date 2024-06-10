@@ -11,9 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,12 +19,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.protobuf.StringValue;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -38,13 +33,20 @@ public class HomeActivity extends AppCompatActivity {
     List<room> roomInfo = new ArrayList<>();
     ArrayList<HomeListElement> elementList = new ArrayList<>();
     ListView roomListView;
-
     TextView userText;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (isFinishing()) {
+            overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
+        }
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        overridePendingTransition(R.anim.fade_in, R.anim.none);
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("UserAccount");
         String id = user.getUid();
         userText = findViewById(R.id.userText);
@@ -73,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra("username",name[0]);
                 intent.putExtra("userid",id);
                 startActivity(intent);
-                overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
+                overridePendingTransition(R.anim.vertical_enter, R.anim.none);
             }
         });
         entbtn = findViewById(R.id.entbtn);
@@ -84,7 +86,7 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra("username",name[0]);
                 intent.putExtra("userid",id);
                 startActivity(intent);
-                overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
+                overridePendingTransition(R.anim.vertical_enter, R.anim.none);
             }
         });
 
@@ -144,7 +146,6 @@ public class HomeActivity extends AppCompatActivity {
                         intent.putExtra("username",name[0]);
                         intent.putExtra("room_num",hlAdapter.getItem(position).getRoomNum());
                         startActivity(intent);
-                        overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
                     }
                 });
             }
@@ -157,14 +158,4 @@ public class HomeActivity extends AppCompatActivity {
         Log.d("onStart_activated","test_log");
     }//onStart
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        if (isFinishing()) {
-            // back 버튼으로 화면 종료가 야기되면 동작한다.
-            overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
-        }
-
-    }
 }

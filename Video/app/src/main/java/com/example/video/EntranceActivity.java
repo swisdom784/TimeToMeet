@@ -2,6 +2,7 @@ package com.example.video;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,11 @@ public class EntranceActivity extends AppCompatActivity {
     Button entbtn;
     EditText password;
     List<Integer> roomList = new ArrayList<>();
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +90,7 @@ public class EntranceActivity extends AppCompatActivity {
                             intent.putExtra("username",username);
                             intent.putExtra("room_num",flag[0]);
                             startActivity(intent);
+                            overridePendingTransition(R.anim.none, R.anim.fade_out);
                             finish();
                         }
                     }
@@ -98,7 +105,7 @@ public class EntranceActivity extends AppCompatActivity {
         tv_home.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
+                onBackPressed();
             }
         });
 

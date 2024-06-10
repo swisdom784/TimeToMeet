@@ -3,8 +3,6 @@ package com.example.video;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,21 +32,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
-
     FirebaseAuth mFirebaseAuth;         //파이어 베이스 인증
     DatabaseReference mDatabaseRef;     //실시간 데이터 베이스
-
     EditText mEtEmail,mEtPwd,mEtName;
     Button mEtnRegister;
-
     TextView pwCheck,emCheck,nameCheck,tv_main;
-
     List<String> nickname;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
+        overridePendingTransition(R.anim.fade_in, R.anim.none);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
@@ -66,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
         tv_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
 

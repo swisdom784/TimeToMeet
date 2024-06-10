@@ -1,23 +1,15 @@
 package com.example.video;
 
 
-import static androidx.fragment.app.FragmentManager.TAG;
-
-
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.activity.ComponentActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,14 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,13 +30,20 @@ public class MainActivity extends AppCompatActivity {
     EditText mEtEmail,mEtPwd;
     Button mEtnRegister;
     Button mEtnLogin;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (isFinishing()) {
+            // back 버튼으로 화면 종료가 야기되면 동작한다.
+            overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
+        }
 
-
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
+        overridePendingTransition(R.anim.vertical_enter, R.anim.none);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
@@ -107,23 +100,10 @@ public class MainActivity extends AppCompatActivity {
         mEtnRegister.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
-
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
-
             }
         });
-
-    }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        if (isFinishing()) {
-            // back 버튼으로 화면 종료가 야기되면 동작한다.
-            overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
-        }
 
     }
     private void showCustomToast(String message) {

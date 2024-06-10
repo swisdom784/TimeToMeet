@@ -2,7 +2,6 @@ package com.example.video;
 
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,12 +37,17 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
     Button start_date_set, end_date_set, start_time_set, end_time_set;
 
     TextView makebtn;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_room);
-        overridePendingTransition(R.anim.horizontal_enter, R.anim.none);
+        overridePendingTransition(R.anim.vertical_enter, R.anim.none);
 
         setDateNTime(); //날짜, 시간 설정(아래쪽에 있음)
 
@@ -202,6 +205,9 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
                 }if(time.get("endhour") - time.get("starthour") > 10){
                     showCustomToast("모임 시간을 10시간 안으로 선택하세요");
                     return;
+                }if(days.get("startday") >= days.get("endday")){
+                        showCustomToast("시작 날짜는 종료 날짜보다 같거나 클 수 없습니다");
+                        return;
                 }if(time.get("starthour") >= time.get("endhour")){
                     showCustomToast("시작 시간은 종료 시간보다 같거나 클 수 없습니다");
                     return;

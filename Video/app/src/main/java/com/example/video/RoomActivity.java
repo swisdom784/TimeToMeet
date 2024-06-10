@@ -5,21 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -212,6 +208,6 @@ public class RoomActivity extends AppCompatActivity {
         intent.putExtra("username",user);
         intent.putExtra("room_num",roomNum);
         startActivity(intent);
-        overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
+        overridePendingTransition(R.anim.none, R.anim.vertical_exit);
     }
 }

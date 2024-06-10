@@ -39,7 +39,7 @@ public class HomeListAdapter extends BaseAdapter {
         Number.setText(roomSample.get(position).getRoomNumber());
         People.setText(roomSample.get(position).getRoomPeople());
         Logo1.setImageResource(R.drawable.logo01);
-        PeopleLogo.setImageResource(R.drawable.ic_baseline_person_outline_24);
+        PeopleLogo.setImageResource(R.drawable.ic_baseline_person_gray);
         return view;
     }
 

@@ -40,6 +40,7 @@ public class RoomNavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_navigation);
+        overridePendingTransition(R.anim.fade_in, R.anim.none);
         Intent i = getIntent();
         user_name = i.getStringExtra("username");
         room_num = i.getIntExtra("room_num",0);
