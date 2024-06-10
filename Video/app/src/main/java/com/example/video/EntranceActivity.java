@@ -80,7 +80,7 @@ public class EntranceActivity extends AppCompatActivity {
                         } else {
                             if(!roomList.contains(flag[0])) roomList.add(flag[0]);
                             FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList").setValue(roomList);
-                            Intent intent = new Intent(EntranceActivity.this, RoomShowActivity.class);
+                            Intent intent = new Intent(EntranceActivity.this, RoomNavigationActivity.class);
                             intent.putExtra("username",username);
                             intent.putExtra("room_num",flag[0]);
                             startActivity(intent);
