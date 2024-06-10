@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="290dp"
-            android:layout_height="240dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             app:srcCompat="@drawable/logo01" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:shadowRadius="20"
             android:text="TIME to MEET"
             android:textColor="#F4F6FA"
-            android:textSize="40dp"
+            android:textSize="30dp"
             android:textStyle="normal"
             android:layout_marginBottom="50dp"/>
     </LinearLayout>

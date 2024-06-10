@@ -44,7 +44,9 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
     Map<String, Integer> days = new HashMap<>();
     List<Integer> roomList = new ArrayList<>();
     private static final String TAG_BOTTOM_SHEET = "bottom_sheet_date_picker";
-    Button makebtn, start_date_set, end_date_set, start_time_set, end_time_set;
+    Button start_date_set, end_date_set, start_time_set, end_time_set;
+
+    TextView makebtn;
     TextView start_date, end_date, start_time,end_time;
     @Override
     public void onBackPressed() {
@@ -63,7 +65,7 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
 
         MAKE_A_ROOM(); //데이터베이스 설정 및 makebtn
 
-        TextView tv_home = findViewById(R.id.back_to_home1);
+        ImageView tv_home = findViewById(R.id.back_to_home1);
         tv_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,10 +76,10 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
 
     public void setDateNTime(){
         roomName = findViewById(R.id.roomName);
-        start_date = findViewById(R.id.datetext_btn1); //tvs
-        end_date = findViewById(R.id.datetext_btn2);
-        start_time = findViewById(R.id.timetext_btn1);
-        end_time = findViewById(R.id.timetext_btn2);
+        //start_date = findViewById(R.id.datetext_btn1); //tvs
+        //end_date = findViewById(R.id.datetext_btn2);
+        //start_time = findViewById(R.id.timetext_btn1);
+        //end_time = findViewById(R.id.timetext_btn2);
         start_date_set = findViewById(R.id.start_date_btn); //btns
         end_date_set = findViewById(R.id.end_date_btn);
         start_time_set = findViewById(R.id.start_time_btn);
@@ -135,27 +137,35 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
     public void onDateSelected(int year,int month,int day,int flag){
         String selectedDate = String.format(Locale.getDefault(), "%d년 %d월 %d일", year, month + 1, day);
         if(flag == 1){//start
-            start_date.setText(selectedDate);
+            //start_date.setText(selectedDate);
+            //수정
+            start_date_set.setText(selectedDate);
             days.put("startyear", year);
             days.put("startmonth", month);
             days.put("startday", day);
         }
         else if(flag == 2){//end
-            end_date.setText(selectedDate);
+            //end_date.setText(selectedDate);
+            //수정
+            end_date_set.setText(selectedDate);
             days.put("endyear", year);
             days.put("endmonth", month);
             days.put("endday", day);
         }
     }
     public void onTimeSelected(int hour, int min,int flag){
-        String selectedTime = String.format(Locale.getDefault(), "%d시", hour);
+        String selectedTime = String.format(Locale.getDefault(), "%d시 %d분", hour, min);
         if(flag == 1){//start
-            start_time.setText(selectedTime);
+            //start_time.setText(selectedTime);
+            //수정
+            start_time_set.setText(selectedTime);
             time.put("starthour", hour);
             time.put("startmin", min);
         }
         else if(flag == 2){//end
-            end_time.setText(selectedTime);
+            //end_time.setText(selectedTime);
+            //수정
+            end_time_set.setText(selectedTime);
             time.put("endhour", hour);
             time.put("endmin", min);
         }
@@ -256,7 +266,14 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
                 mdatabase.child(String.valueOf(room_num[0] + 1)).setValue(r);
                 mdatabase = FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList");
                 mdatabase.setValue(roomList);
+<<<<<<< HEAD
                 onBackPressed();
+=======
+
+                Intent intent = new Intent(MakeRoomActivity.this, SuccessActivity.class);
+                startActivity(intent);
+                finish();
+>>>>>>> 9b5ac84a38adce5eab4144c9c60ce02123aef68e
             }
         });
     }
