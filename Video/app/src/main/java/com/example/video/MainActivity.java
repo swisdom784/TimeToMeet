@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             // User is logged in, navigate to HomeActivity
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(intent);
-
+            finish();
 //            finish();  // Close the current activity
         }
         mEtnLogin.setOnClickListener(new View.OnClickListener(){
