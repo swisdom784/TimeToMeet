@@ -4,6 +4,7 @@ public class HomeListElement {
     private String RoomNumber;
     private String RoomPeople;
     private int RoomNum;
+    private boolean isChecked;
 
     public int getRoomNum() {
         return RoomNum;
@@ -17,6 +18,7 @@ public class HomeListElement {
         this.RoomNumber = RoomNumber;
         this.RoomPeople = RoomPeople;
         this.RoomNum = RoomNum;
+        this.isChecked = false;
     }
 
     public String getRoomNumber() {
@@ -34,4 +36,8 @@ public class HomeListElement {
     public void setRoomPeople(String roomPeople) {
         RoomPeople = roomPeople;
     }
+
+    public boolean isChecked() {return isChecked;}
+
+    public void setChecked(boolean checked) {isChecked = checked;}
 }

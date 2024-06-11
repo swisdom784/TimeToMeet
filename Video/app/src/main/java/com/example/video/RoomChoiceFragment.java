@@ -114,7 +114,12 @@ public class RoomChoiceFragment extends Fragment {
         startTime = meet[4];
         endTime = meet[5];
         map = r.getGuest();
-        weight = (List<Long>) map.get(user_name);
+        if(map.get(user_name) != null) {
+            weight = (List<Long>)map.get(user_name);
+        }
+        else{
+            for(int i=0;i<(meet[5]-meet[4]+1)*(meet[3]-meet[1]+1);i++) weight.add(Long.valueOf(0));
+        }
 
         okbtn.setOnClickListener(new View.OnClickListener() {
             @Override

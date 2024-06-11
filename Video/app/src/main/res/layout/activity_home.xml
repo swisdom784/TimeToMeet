@@ -54,6 +54,20 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <android.widget.Button
+                android:id="@+id/erasebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/round"
+                android:backgroundTint="#425276"
+                android:fontFamily="@font/bagel_fat_one_regular"
+                android:paddingHorizontal="17dp"
+                android:paddingVertical="8dp"
+                android:text="삭제"
+                android:textColor="#F4F6FA"
+                android:textSize="15dp" />
+
         </LinearLayout>
 
     </LinearLayout>

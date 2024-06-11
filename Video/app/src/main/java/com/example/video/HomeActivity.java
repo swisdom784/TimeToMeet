@@ -6,11 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,12 +31,14 @@ public class HomeActivity extends AppCompatActivity {
     int a = 0,b = 0;
     final String name[] = new String[10];
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    Button makebtn,entbtn;
+    Button makebtn,entbtn,erasebtn;
     List<Integer> roomList = new ArrayList<>();
     List<room> roomInfo = new ArrayList<>();
     ArrayList<HomeListElement> elementList = new ArrayList<>();
     ListView roomListView;
     TextView userText;
+
+    HomeListAdapter hlAdapter;
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -90,6 +95,32 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        erasebtn = findViewById(R.id.erasebtn);
+        erasebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Integer> newRoom = new ArrayList<>();
+                int eraseNum = 0;
+                for(int i=0;i<roomList.size();i++) {
+                    if (hlAdapter.getItem(i).isChecked()) {
+                        showCustomToast(String.valueOf(i) + "삭제");
+                        eraseNum++;
+                    }
+                    else {
+                        newRoom.add(roomList.get(i));
+                    }
+                }
+                if(eraseNum != 0) {
+                    roomList.clear();
+                    roomList.addAll(newRoom);
+                    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList");
+                    mDatabase.setValue(roomList);
+                    elementList.clear();
+                    a = 0;
+                    onStart();
+                }
+            }
+        });
     }
 
     @Override
@@ -136,7 +167,7 @@ public class HomeActivity extends AppCompatActivity {
                         elementList.set(i,check);
                     }
                 }
-                HomeListAdapter hlAdapter = new HomeListAdapter(getApplicationContext(),elementList);
+                hlAdapter = new HomeListAdapter(getApplicationContext(),elementList);
                 roomListView.setAdapter(hlAdapter);
                 roomListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                     @Override
@@ -157,5 +188,19 @@ public class HomeActivity extends AppCompatActivity {
         });
         Log.d("onStart_activated","test_log");
     }//onStart
+    private void showCustomToast(String message) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, null);
 
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(message);
+
+        ImageView image = layout.findViewById(R.id.toast_image);
+        image.setImageResource(R.drawable.logo01); // 원하는 아이콘 리소스 설정
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
 }
