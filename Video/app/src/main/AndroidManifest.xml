@@ -21,18 +21,8 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:screenOrientation="portrait"
-            android:name=".NoticeBoardActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:screenOrientation="portrait"
             android:name=".SuccessActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
         <activity
             android:screenOrientation="portrait"
@@ -40,15 +30,7 @@
             android:exported="false" />
         <activity
             android:screenOrientation="portrait"
-            android:name=".RoomShowActivity"
-            android:exported="false" />
-        <activity
-            android:screenOrientation="portrait"
             android:name=".EntranceActivity"
-            android:exported="false" />
-        <activity
-            android:screenOrientation="portrait"
-            android:name=".RoomActivity"
             android:exported="false" />
         <activity
             android:screenOrientation="portrait"
