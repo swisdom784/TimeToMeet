@@ -31,7 +31,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="20dp"
             android:weightSum="1">
 
@@ -65,8 +65,6 @@
                 android:background="@drawable/round"
                 android:backgroundTint="#425276"
                 android:fontFamily="@font/bagel_fat_one_regular"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="8dp"
                 android:text="삭제"
                 android:textColor="#F4F6FA"
                 android:textSize="15dp" />
