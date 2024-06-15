@@ -1,15 +1,21 @@
 package com.example.video;
 
+import static java.lang.String.valueOf;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -39,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<HomeListElement> elementList = new ArrayList<>();
     ListView roomListView;
     TextView userText;
+    String id;
 
     HomeListAdapter hlAdapter;
     @Override
@@ -55,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         overridePendingTransition(R.anim.fade_in, R.anim.none);
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("UserAccount");
-        String id = user.getUid();
+        id = user.getUid();
         userText = findViewById(R.id.userText);
         mDatabase.child(id).addValueEventListener(new ValueEventListener() {
             @Override
@@ -98,30 +105,12 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         erasebtn = findViewById(R.id.erasebtn);
-        erasebtn.setVisibility(View.INVISIBLE);
+        //erasebtn.setVisibility(View.INVISIBLE);
         erasebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Integer> newRoom = new ArrayList<>();
-                int eraseNum = 0;
-                for(int i=0;i<roomList.size();i++) {
-                    if (hlAdapter.getItem(i).isChecked()) {
-                        showCustomToast(String.valueOf(i) + "삭제");
-                        eraseNum++;
-                    }
-                    else {
-                        newRoom.add(roomList.get(i));
-                    }
-                }
-                if(eraseNum != 0) {
-                    roomList.clear();
-                    roomList.addAll(newRoom);
-                    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList");
-                    mDatabase.setValue(roomList);
-                    elementList.clear();
-                    a = 0;
-                    onStart();
-                }
+                showYesNoDialog();
+
             }
         });
     }
@@ -157,7 +146,7 @@ public class HomeActivity extends AppCompatActivity {
                     room r2 = roomInfo.get(num-1);
                     int Pnum = r2.getGuest().size();
                     String roomName = r2.getname();
-                    HomeListElement tempElement = new HomeListElement(roomName,String.valueOf(Pnum),num);
+                    HomeListElement tempElement = new HomeListElement(roomName, valueOf(Pnum),num);
                     elementList.add(tempElement);
                 }
                 roomListView = findViewById(R.id.roomListOrigin);
@@ -166,7 +155,7 @@ public class HomeActivity extends AppCompatActivity {
                     HomeListElement check = elementList.get(i);
                     room r = roomInfo.get(roomList.get(i)-1);
                     if(Integer.valueOf(check.getRoomPeople()) != r.getGuest().size()){
-                        check.setRoomPeople(String.valueOf(r.getGuest().size()));
+                        check.setRoomPeople(valueOf(r.getGuest().size()));
                         elementList.set(i,check);
                     }
                 }
@@ -206,29 +195,63 @@ public class HomeActivity extends AppCompatActivity {
         toast.setView(layout);
         toast.show();
     }
-    private void showYesNoDialog(){
+    int eraseNum = 0;
+    List<Integer> newRoom = new ArrayList<>();
+   private void showYesNoDialog(){
+       eraseNum = 0;
+       newRoom.clear();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("N 개의 방을 삭제하시겠습니까?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // 'Yes' 버튼을 눌렀을 때 처리
-                        handleDialogResult(true);
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // 'No' 버튼을 눌렀을 때 처리
-                        handleDialogResult(false);
-                    }
-                });
-        builder.create().show();
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.delete_dialog,null);
+        builder.setView(dialogView);
+        Dialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+       TextView tv_num = dialogView.findViewById(R.id.num_of_room);
+
+       for(int i=0;i<roomList.size();i++) {
+           if (hlAdapter.getItem(i).isChecked()) {
+               eraseNum++;
+           }
+           else {
+               newRoom.add(roomList.get(i));
+           }
+       }
+       if(eraseNum == 0){
+           showCustomToast("삭제할 방을 선택해주세요");
+           return;
+       }
+       tv_num.setText(valueOf(eraseNum));
+        TextView btnYes = dialogView.findViewById(R.id.btn_yes);
+        TextView btnNo = dialogView.findViewById(R.id.btn_no);
+
+        btnYes.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                handleDialogResult(true);
+                dialog.dismiss();
+            }
+        });
+        btnNo.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                handleDialogResult(false);
+                dialog.dismiss();
+            }
+        });
+       dialog.show();
     }
     private void handleDialogResult(boolean isYes) {
-        // 다이얼로그 결과 처리
         if (isYes) {
-            showCustomToast("YES");
-        } else {
-            showCustomToast("NO");
+            if(eraseNum != 0) {
+                roomList.clear();
+                roomList.addAll(newRoom);
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList");
+                mDatabase.setValue(roomList);
+                elementList.clear();
+                a = 0;
+                onStart();
+            }
         }
+        return;
     }
 }
