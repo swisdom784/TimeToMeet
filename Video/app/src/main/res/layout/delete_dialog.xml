@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_sheet_background"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/num_of_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="N"
+            android:textSize="23sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/mainfont01"/>
+        <TextView
+            android:id="@+id/dialog_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 개의 방을 삭제할까요?"
+            android:textSize="23sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/mainfont01"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/btn_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="Yes"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/mainfont01"
+            android:layout_marginEnd="20dp"/>
+
+        <TextView
+            android:id="@+id/btn_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
+            android:textSize="20sp"
+            android:text="No"
+            android:textColor="@color/white"
+            android:fontFamily="@font/mainfont01"
+            android:layout_marginStart="20dp"/>
+    </LinearLayout>
+</LinearLayout>

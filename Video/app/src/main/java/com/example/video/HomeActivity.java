@@ -1,8 +1,10 @@
 package com.example.video;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -202,5 +204,30 @@ public class HomeActivity extends AppCompatActivity {
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
+    }
+    private void showYesNoDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("N 개의 방을 삭제하시겠습니까?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // 'Yes' 버튼을 눌렀을 때 처리
+                        handleDialogResult(true);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // 'No' 버튼을 눌렀을 때 처리
+                        handleDialogResult(false);
+                    }
+                });
+        builder.create().show();
+    }
+    private void handleDialogResult(boolean isYes) {
+        // 다이얼로그 결과 처리
+        if (isYes) {
+            showCustomToast("YES");
+        } else {
+            showCustomToast("NO");
+        }
     }
 }
