@@ -45,7 +45,7 @@ public class HomeListAdapter extends BaseAdapter {
         Number.setText(element.getRoomNumber());
         People.setText(element.getRoomPeople());
         Logo1.setImageResource(R.drawable.logo01);
-        PeopleLogo.setImageResource(R.drawable.ic_baseline_person_outline_24);
+        PeopleLogo.setImageResource(R.drawable.ic_baseline_person_gray);
         checkBox.setChecked(element.isChecked());
 
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
