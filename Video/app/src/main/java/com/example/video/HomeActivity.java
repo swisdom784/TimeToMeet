@@ -98,6 +98,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         erasebtn = findViewById(R.id.erasebtn);
+        erasebtn.setVisibility(View.INVISIBLE);
         erasebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,7 +170,7 @@ public class HomeActivity extends AppCompatActivity {
                         elementList.set(i,check);
                     }
                 }
-                hlAdapter = new HomeListAdapter(getApplicationContext(),elementList);
+                hlAdapter = new HomeListAdapter(getApplicationContext(),elementList,erasebtn);
                 roomListView.setAdapter(hlAdapter);
                 roomListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                     @Override

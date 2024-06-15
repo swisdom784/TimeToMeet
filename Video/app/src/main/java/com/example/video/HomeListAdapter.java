@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,10 +17,15 @@ public class HomeListAdapter extends BaseAdapter {
     LayoutInflater mLayoutInflater;
     ArrayList<HomeListElement> roomSample;
 
-    public HomeListAdapter(Context context, ArrayList<HomeListElement> data){
+    Button erase;
+
+    int eraseNum=0;
+
+    public HomeListAdapter(Context context, ArrayList<HomeListElement> data, Button erasebtn){
         mContext = context;
         roomSample = data;
         mLayoutInflater = LayoutInflater.from(mContext);
+        erase = erasebtn;
     }
 
     @Override
@@ -49,7 +55,16 @@ public class HomeListAdapter extends BaseAdapter {
         PeopleLogo.setImageResource(R.drawable.ic_baseline_person_gray);
         checkBox.setChecked(element.isChecked());
 
+        MainActivity main = new MainActivity();
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked)
+                eraseNum+=1;
+            else
+                eraseNum-=1;
+            if(eraseNum > 0)
+                erase.setVisibility(View.VISIBLE);
+            else
+                erase.setVisibility(View.INVISIBLE);
             element.setChecked(isChecked);
             // If needed, you can handle other logic here, like updating a database or showing a Toast
         });
