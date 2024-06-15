@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,53 +7,43 @@
     android:background="#9DB6D1"
     android:orientation="vertical"
     tools:context=".EntranceActivity">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bagel_fat_one_regular"
+        android:gravity="center"
+        android:text="Enter Room"
+        android:textColor="#F4F6FA"
+        android:textSize="30sp"
+        android:textStyle="normal"
+        android:shadowColor="#507587B2"
+        android:shadowRadius="20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"/>
 
     <LinearLayout
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="3dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#F4F6FA"
+        android:background="@drawable/round_corner"/>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center_vertical"
-            android:contentDescription="TODO"
-            app:layout_constraintBottom_toTopOf="@id/mainBox"
-            app:layout_constraintEnd_toStartOf="@id/textView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo01" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:fontFamily="@font/bagel_fat_one_regular"
-            android:gravity="center_vertical"
-            android:shadowColor="#507587B2"
-            android:shadowRadius="20"
-            android:text="Enter Room"
-            android:textColor="#F4F6FA"
-            android:textSize="50sp"
-            app:layout_constraintBottom_toTopOf="@id/mainBox"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/mainBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginHorizontal="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/round"
         android:backgroundTint="#70F4F6FA"
         android:orientation="vertical">
@@ -63,11 +53,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/mainfont01"
-            android:text="    입장하실 방의\n입장 코드를 입력하세요"
+            android:text="입장하실 방의"
             android:textColor="#7587B2"
-            android:textSize="27sp"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/mainTxt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="50dp"
+            android:fontFamily="@font/mainfont01"
+            android:text="입장 코드를 입력하세요"
+            android:textColor="#7587B2"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
 
@@ -91,29 +93,29 @@
         <android.widget.Button
             android:id="@+id/entbtn"
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="38dp"
             android:background="@drawable/custom_ripple_effect"
-            android:backgroundTint="@color/colorCoolPink"
+            android:backgroundTint="#425276"
             android:fontFamily="@font/mainfont01"
             android:text="방 입장하기"
             android:textColor="@color/white"
-            android:textSize="25dp" />
+            android:textSize="25sp"
+            android:layout_margin="60dp"/>
 
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/back_to_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:foreground="?attr/selectableItemBackground"
-        android:fontFamily="@font/mainfont01"
-        android:text="홈 화면으로 돌아가기"
-        android:textColor="#F4F6FA"
-        android:textSize="20sp" />
 
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/back_to_home"
+        android:layout_marginStart="20dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/back"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
