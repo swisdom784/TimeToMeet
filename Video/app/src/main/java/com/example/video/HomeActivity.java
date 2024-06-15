@@ -41,12 +41,12 @@ public class HomeActivity extends AppCompatActivity {
     final String name[] = new String[10];
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Button makebtn,entbtn;
-    TextView erasebtn;
+    TextView erasebtn,userText;
     List<Integer> roomList = new ArrayList<>();
     List<room> roomInfo = new ArrayList<>();
     ArrayList<HomeListElement> elementList = new ArrayList<>();
     ListView roomListView;
-    TextView userText;
+    ImageView backBtn;
     String id;
 
     HomeListAdapter hlAdapter;
@@ -62,7 +62,19 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        overridePendingTransition(R.anim.fade_in, R.anim.none);
+        backBtn = findViewById(R.id.back_to_home2);
+        backBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                intent.putExtra("isLogout",1);
+                overridePendingTransition(R.anim.fade_in, R.anim.horizontal_exit);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("UserAccount");
         id = user.getUid();
         userText = findViewById(R.id.userText);

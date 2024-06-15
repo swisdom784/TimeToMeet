@@ -43,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        overridePendingTransition(R.anim.vertical_enter, R.anim.none);
+        overridePendingTransition(R.anim.fade_in, R.anim.horizontal_exit);
+        //splash에서 들어온 건지 Home에서 들어온건지 검사
+        Intent LogInOut = getIntent();
+        int isLogin = LogInOut.getIntExtra("isLogout",-1);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
@@ -54,13 +57,12 @@ public class MainActivity extends AppCompatActivity {
         mEtnRegister = findViewById(R.id.signupbtn);
 
        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+        if(isLogin == 1 || isLogin == -1) currentUser = null;
         if (currentUser != null) {
-
             // User is logged in, navigate to HomeActivity
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
-//            finish();  // Close the current activity
         }
         mEtnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             startActivity(intent);
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
