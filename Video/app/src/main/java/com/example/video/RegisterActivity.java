@@ -36,7 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     DatabaseReference mDatabaseRef;     //실시간 데이터 베이스
     EditText mEtEmail,mEtPwd,mEtName;
     Button mEtnRegister;
-    TextView pwCheck,emCheck,nameCheck,tv_main;
+    TextView pwCheck,emCheck,nameCheck;
+    ImageView iv_main;
     List<String> nickname;
     @Override
     public void onBackPressed() {
@@ -60,8 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
         emCheck = findViewById(R.id.pwcheckText2);
         nameCheck = findViewById(R.id.pwcheckText3);
 
-        tv_main = findViewById(R.id.back_to_main1);
-        tv_main.setOnClickListener(new View.OnClickListener() {
+        iv_main = findViewById(R.id.back_to_main1);
+        iv_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
