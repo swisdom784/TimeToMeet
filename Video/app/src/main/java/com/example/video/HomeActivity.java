@@ -127,7 +127,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("room");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue() == null) return;
