@@ -3,6 +3,7 @@ package com.example.video;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
@@ -11,7 +12,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -27,8 +31,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -205,29 +207,47 @@ public class RoomHomeFragment extends Fragment {
         });
         return newBtn;
     }
-    private void showPopupWindow(View anchorView,int Btntag) {
+    private void showPopupWindow(View anchorView, int Btntag) {
         // Inflate the popup_layout.xml
-        Context context;
-        context = anchorView.getContext();
-        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        Context context = anchorView.getContext();
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_layout, null);
         TextView textView = popupView.findViewById(R.id.checkname);
+
         StringBuilder nameText = new StringBuilder();
         ArrayList<String> nameList = new ArrayList<>(guest.keySet());
 
-        for(String s : nameList)
-        {
-            ArrayList<Long> check = (ArrayList<Long>)guest.get(s);
-            if(check.get(Btntag) == 1){
+        for (String s : nameList) {
+            ArrayList<Long> check = (ArrayList<Long>) guest.get(s);
+            if (check.get(Btntag) == 1) {
                 nameText.append(s).append('\n');
             }
         }
-        if(nameText.length()>0) {
-            nameText.insert(0, "선택한 사람\n");
-            nameText.setLength(nameText.length()-1);}
-        else nameText.append("선택한 사람이 없어요");
-        String finalText = nameText.toString();
-        textView.setText(finalText);
+
+        SpannableStringBuilder sb = new SpannableStringBuilder();
+        if (nameText.length() > 0) {
+            nameText.insert(0, "     \n");
+            nameText.setLength(nameText.length() - 1);
+
+            // Load the drawable resource
+            Drawable drawable = ContextCompat.getDrawable(context, R.drawable.person_check_20px);
+            if (drawable != null) {
+                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
+
+                // Create a SpannableString with the image span
+                SpannableString imageSpannable = new SpannableString(" ");
+                imageSpannable.setSpan(imageSpan, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+
+                // Append the image span and text to the SpannableStringBuilder
+                sb.append(imageSpannable);
+            }
+            sb.append(nameText);
+        } else {
+            sb.append("선택한 사람이 없어요");
+        }
+
+        textView.setText(sb);
 
         // Create the PopupWindow
         int width = ViewGroup.LayoutParams.WRAP_CONTENT;
