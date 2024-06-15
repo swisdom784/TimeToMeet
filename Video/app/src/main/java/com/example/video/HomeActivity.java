@@ -105,12 +105,11 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         erasebtn = findViewById(R.id.erasebtn);
-        //erasebtn.setVisibility(View.INVISIBLE);
+        erasebtn.setVisibility(View.INVISIBLE);
         erasebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showYesNoDialog();
-
             }
         });
     }
@@ -229,6 +228,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v){
                 handleDialogResult(true);
                 dialog.dismiss();
+                erasebtn.setVisibility(View.INVISIBLE);
             }
         });
         btnNo.setOnClickListener(new View.OnClickListener(){
