@@ -150,7 +150,7 @@ public class RoomChoiceFragment extends Fragment {
 
         LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
                 185,
-                117);
+                112);
 
         for (int ii = startTime; ii <= endTime; ii++) {
             TextView tv_time = makeTimeText(ii, btnParams);
@@ -191,7 +191,7 @@ public class RoomChoiceFragment extends Fragment {
         newTime.setTextSize(22);
         newTime.setTypeface(ResourcesCompat.getFont(getContext(),R.font.bagel_fat_one_regular));
         newTime.setTextColor(getResources().getColor(R.color.colorYlnMnBlue));
-        int padding = 5;
+        int padding = 6;
         int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,padding,getResources().getDisplayMetrics());
         newTime.setPadding(15,paddingpx,0,paddingpx);
         return newTime;
@@ -207,7 +207,7 @@ public class RoomChoiceFragment extends Fragment {
         else
             border.setColor(getResources().getColor(R.color.colorPowderBlue));
 //        border.setColor(Color.BLUE); // 배경색 투명
-        border.setStroke(2, getResources().getColor(R.color.colorCadetGray));// 테두리 두께와 색상
+        border.setStroke(2, getResources().getColor(R.color.white_30));// 테두리 두께와 색상
         border.setCornerRadius(0); // 모서리 곡률
         // 테두리를 Button에 설정
         newBtn.setBackground(border);

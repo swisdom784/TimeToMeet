@@ -6,14 +6,15 @@
         android:title="Home" />
     <item
         android:id="@+id/nav_people"
-        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:icon="@drawable/groups_24px"
         android:title="People" />
     <item
         android:id="@+id/nav_choice"
-        android:icon="@drawable/ic_choice"
-        android:title="Profile" />
+        android:icon="@drawable/person_24px"
+        android:iconTint="@color/white"
+        android:title="Personal" />
     <item
         android:id="@+id/nav_memo"
-        android:icon="@drawable/ic_memo"
+        android:icon="@drawable/note_24px"
         android:title="Memo" />
 </menu>

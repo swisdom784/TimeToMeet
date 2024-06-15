@@ -44,7 +44,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="center_vertical"
-            app:srcCompat="@drawable/ic_baseline_person_gray" />
+            app:srcCompat="@drawable/person_24px" />
         <TextView
             android:id="@+id/roomPeople"
             android:layout_width="30dp"

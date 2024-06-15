@@ -20,7 +20,7 @@
             android:orientation="vertical"
             android:background="@drawable/round"
             android:backgroundTint="@color/AntiFlashwhite"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
             android:paddingTop="10dp">
 
@@ -60,7 +60,7 @@
                     android:scaleType="centerCrop"
                     android:padding="5dp"
                     android:background="@drawable/round"
-                    android:backgroundTint="@color/colorPowderBlue" />
+                    android:backgroundTint="@color/colorCoolPink" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
