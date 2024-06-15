@@ -27,13 +27,14 @@
     <DatePicker
         android:id="@+id/date_picker"
         android:layout_below="@id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
+        android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:calendarViewShown="false"
-        android:datePickerMode="calendar"
-        android:scaleX="1.0"
-        android:scaleY="1.0" />
+        android:datePickerMode="spinner"
+        android:scaleX="1.2"
+        android:scaleY="1.2" />
 
     <!-- 확인 버튼 -->
     <android.widget.Button
@@ -42,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginVertical="10dp"
+        android:layout_marginVertical="30dp"
         android:paddingHorizontal="40dp"
         android:background="@drawable/custom_ripple_effect"
         android:backgroundTint="@color/colorPrimaryDark"
