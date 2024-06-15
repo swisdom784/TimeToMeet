@@ -17,11 +17,11 @@ public class HomeListAdapter extends BaseAdapter {
     LayoutInflater mLayoutInflater;
     ArrayList<HomeListElement> roomSample;
 
-    Button erase;
+    TextView erase;
 
     int eraseNum=0;
 
-    public HomeListAdapter(Context context, ArrayList<HomeListElement> data, Button erasebtn){
+    public HomeListAdapter(Context context, ArrayList<HomeListElement> data, TextView erasebtn){
         mContext = context;
         roomSample = data;
         mLayoutInflater = LayoutInflater.from(mContext);

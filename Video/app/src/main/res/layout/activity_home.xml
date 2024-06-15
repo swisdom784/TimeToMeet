@@ -61,15 +61,14 @@
                 android:textColor="#F4F6FA"
                 android:textSize="23sp"
                 android:textStyle="bold" />
+
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-            <android.widget.Button
                 android:id="@+id/erasebtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="5dp"
                 android:background="@drawable/round"
                 android:backgroundTint="#425276"
                 android:fontFamily="@font/bagel_fat_one_regular"

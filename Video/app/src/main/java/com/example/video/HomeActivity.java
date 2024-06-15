@@ -40,7 +40,8 @@ public class HomeActivity extends AppCompatActivity {
     int a = 0,b = 0;
     final String name[] = new String[10];
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    Button makebtn,entbtn,erasebtn;
+    Button makebtn,entbtn;
+    TextView erasebtn;
     List<Integer> roomList = new ArrayList<>();
     List<room> roomInfo = new ArrayList<>();
     ArrayList<HomeListElement> elementList = new ArrayList<>();
