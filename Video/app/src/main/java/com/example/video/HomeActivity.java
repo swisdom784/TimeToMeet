@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -205,6 +206,8 @@ public class HomeActivity extends AppCompatActivity {
         View dialogView = inflater.inflate(R.layout.delete_dialog,null);
         builder.setView(dialogView);
         Dialog dialog = builder.create();
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT
+                ,WindowManager.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
        TextView tv_num = dialogView.findViewById(R.id.num_of_room);
 
@@ -239,6 +242,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
        dialog.show();
+
     }
     private void handleDialogResult(boolean isYes) {
         if (isYes) {
