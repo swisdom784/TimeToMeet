@@ -22,7 +22,7 @@
             app:srcCompat="@drawable/logo01"/>
         <TextView
             android:id="@+id/roomNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="3sp"
             android:layout_marginLeft="7sp"
@@ -30,7 +30,11 @@
             android:textSize="25sp"
             android:text="PrintRoom"
             android:textColor="@color/colorSlateGray"
-            android:fontFamily="@font/mainfont01"/>
+            android:fontFamily="@font/mainfont01"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:marqueeRepeatLimit="marquee_forever"/>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="0dp"
