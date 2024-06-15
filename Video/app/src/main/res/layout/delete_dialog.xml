@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/dialog_background"
-    android:padding="16dp">
+    android:padding="20dp"
+    android:layout_marginHorizontal="30dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,6 +49,15 @@
             android:textColor="@color/white"
             android:fontFamily="@font/mainfont01"
             android:layout_marginEnd="20dp"/>
+
+        <LinearLayout
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="5dp"
+            android:layout_gravity="center_vertical"
+            android:backgroundTint="#F4F6FA"
+            android:background="@drawable/round_corner"/>
 
         <TextView
             android:id="@+id/btn_no"

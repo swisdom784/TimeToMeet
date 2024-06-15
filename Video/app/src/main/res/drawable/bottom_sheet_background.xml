@@ -2,5 +2,9 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <solid android:color="@color/step6" /> <!-- 배경색 -->
-    <corners android:radius="20dp" /> <!-- 모서리를 둥글게 하는 정도 -->
+    <corners android:radius="10dp"
+        android:bottomLeftRadius="0dp"
+        android:bottomRightRadius="0dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"/>
 </shape>

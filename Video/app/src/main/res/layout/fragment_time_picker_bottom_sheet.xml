@@ -12,16 +12,16 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/bagel_fat_one_regular"
         android:gravity="center"
-        android:text="Pick Time"
-        android:textColor="#F4F6FA"
-        android:textSize="60sp"
-        android:textStyle="normal"
         android:shadowColor="#507587B2"
         android:shadowRadius="20"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"/>
+        android:text="Pick Time"
+        android:textColor="#F4F6FA"
+        android:textSize="50sp"
+        android:textStyle="normal" />
 
     <!-- DatePicker 추가 -->
     <TimePicker
@@ -36,18 +36,20 @@
         android:scaleY="1.2" />
 
     <!-- 확인 버튼 -->
-    <Button
+    <android.widget.Button
         android:id="@+id/btn_confirm_time"
         android:layout_below="@id/time_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginVertical="30dp"
+        android:paddingHorizontal="40dp"
+        android:background="@drawable/custom_ripple_effect"
         android:backgroundTint="@color/colorPrimaryDark"
         android:textColor="@color/white"
-        android:text="  확인  "
-        android:textSize="20sp"
+        android:text="확인"
+        android:fontFamily="@font/mainfont01"
+        android:textSize="25sp"
         android:textStyle="bold"
         />
 
