@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,8 +102,8 @@ public class EntranceActivity extends AppCompatActivity {
                 });
             }
         });
-        TextView tv_home = findViewById(R.id.back_to_home);
-        tv_home.setOnClickListener(new View.OnClickListener(){
+        ImageView iv_home = findViewById(R.id.back_to_home);
+        iv_home.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 onBackPressed();
