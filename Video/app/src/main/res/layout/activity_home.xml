@@ -27,7 +27,15 @@
             android:text="TIME to MEET"
             android:textColor="#F4F6FA"
             android:textSize="30sp" />
-
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#F4F6FA"
+            android:background="@drawable/round_corner"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +79,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="25dp"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -89,7 +97,7 @@
 
         <LinearLayout
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/box3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,12 +120,12 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/round"
                 android:backgroundTint="#425276"
-                android:fontFamily="@font/bagel_fat_one_regular"
-                android:paddingHorizontal="17dp"
+                android:fontFamily="@font/mainfont01"
+                android:paddingHorizontal="20dp"
                 android:paddingVertical="8dp"
-                android:text="Create Room"
+                android:text="방 생성하기"
                 android:textColor="#F4F6FA"
-                android:textSize="15dp" />
+                android:textSize="20dp" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -129,12 +137,12 @@
                 android:layout_marginStart="10dp"
                 android:background="@drawable/round"
                 android:backgroundTint="#425276"
-                android:fontFamily="@font/bagel_fat_one_regular"
-                android:paddingHorizontal="17dp"
+                android:fontFamily="@font/mainfont01"
+                android:paddingHorizontal="20dp"
                 android:paddingVertical="8dp"
-                android:text="Enter Room"
+                android:text="방 입장하기"
                 android:textColor="#F4F6FA"
-                android:textSize="15dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:layout_width="0dp"
