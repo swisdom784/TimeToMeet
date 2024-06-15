@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@drawable/popup_backtround"
+    android:background="@drawable/round"
     android:backgroundTint="@color/colorPowderBlue">
 
     <TextView
