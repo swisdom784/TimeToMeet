@@ -125,7 +125,10 @@ public class RoomChoiceFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 r.setSum(sum);
-                map.replace(user_name,weight);
+                if(map.get(user_name) != null)
+                    map.replace(user_name,weight);
+                else
+                    map.put(user_name,weight);
                 r.setGuest(map);
                 databaseReference.child("room").child(String.valueOf(room_num)).setValue(r)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
