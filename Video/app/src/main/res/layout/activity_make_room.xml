@@ -28,7 +28,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="3.5dp"
+        android:layout_height="3dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="#F4F6FA"
@@ -44,10 +44,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/round"
         android:backgroundTint="#70F4F6FA"
-        android:padding="7dp"
-        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:padding="10dp"
+        android:drawableLeft="@drawable/chat_info_24px"
         android:fontFamily="@font/mainfont01"
         android:textSize="20sp"
+        android:textColorHint="@color/white_90"
         android:hint="  방 이름 입력"/>
 
 
@@ -83,43 +84,56 @@
                 android:gravity="center"
                 android:shadowRadius="20"
                 android:text="날짜 선택"
-                android:textColor="#425276"
+                android:textColor="@color/colorYlnMnBlue"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.widget.Button
-                android:id="@+id/start_date_btn"
-                android:layout_width="330dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/round_color"
-                android:fontFamily="@font/mainfont01"
-                android:text="시작날짜 설정"
-                android:textColor="#425276"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                android:orientation="vertical"
+                android:layout_marginHorizontal="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-            <android.widget.Button
-                android:id="@+id/end_date_btn"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/round_color"
-                android:fontFamily="@font/mainfont01"
-                android:text="종료날짜 설정"
-                android:textColor="#425276"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/start_date_btn" />
+                <android.widget.Button
+                    android:id="@+id/start_date_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/round_color"
+                    android:fontFamily="@font/mainfont01"
+                    android:text="시작날짜 설정"
+                    android:textColor="@color/colorYlnMnBlue"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/arrow_drop_down_24dp"/>
+
+                <android.widget.Button
+                    android:id="@+id/end_date_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/round_color"
+                    android:fontFamily="@font/mainfont01"
+                    android:text="종료날짜 설정"
+                    android:textColor="@color/colorYlnMnBlue"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/start_date_btn" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -127,7 +141,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:layout_width="match_parent"
-            android:layout_height="2.5dp"
+            android:layout_height="2dp"
             android:background="#9DB6D1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
@@ -150,43 +164,57 @@
                 android:gravity="center"
                 android:shadowRadius="20"
                 android:text="시간 선택"
-                android:textColor="#425276"
+                android:textColor="@color/colorYlnMnBlue"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.widget.Button
-                android:id="@+id/start_time_btn"
-                android:layout_width="330dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/round_color"
-                android:fontFamily="@font/mainfont01"
-                android:text="시작시간 설정"
-                android:textColor="#425276"
-                android:textSize="20sp"
+                android:layout_marginHorizontal="30dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-            <android.widget.Button
-                android:id="@+id/end_time_btn"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/round_color"
-                android:fontFamily="@font/mainfont01"
-                android:text="종료시간 설정"
-                android:textColor="#425276"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/start_time_btn" />
+                <android.widget.Button
+                    android:id="@+id/start_time_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/round_color"
+                    android:fontFamily="@font/mainfont01"
+                    android:text="시작시간 설정"
+                    android:textColor="@color/colorYlnMnBlue"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/arrow_drop_down_24dp"/>
+
+                <android.widget.Button
+                    android:id="@+id/end_time_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/round_color"
+                    android:fontFamily="@font/mainfont01"
+                    android:text="종료시간 설정"
+                    android:textColor="@color/colorYlnMnBlue"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/start_time_btn" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -199,14 +227,12 @@
         android:layout_height="wrap_content"
         android:background="@drawable/round_corner"
         android:backgroundTint="#425276"
-        android:paddingStart="40dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="40dp"
-        android:paddingBottom="10dp"
-        android:text="Done"
+        android:paddingHorizontal="35dp"
+        android:paddingVertical="10dp"
+        android:text="방 생성하기"
+        android:fontFamily="@font/mainfont01"
         android:textColor="@color/white"
-        android:textSize="23sp"
-        android:textStyle="bold"
+        android:textSize="25sp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
