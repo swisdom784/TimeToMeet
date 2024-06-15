@@ -167,7 +167,7 @@ public class RoomHomeFragment extends Fragment {
         newTime.setTextSize(22);
         newTime.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bagel_fat_one_regular));
         newTime.setTextColor(ContextCompat.getColor(getContext(), R.color.colorYlnMnBlue));
-        int padding = 6;
+        int padding = 4;
         int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, padding, getResources().getDisplayMetrics());
         newTime.setPadding(15, paddingpx, 0, paddingpx);
         return newTime;
