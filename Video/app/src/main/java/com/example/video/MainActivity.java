@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             startActivity(intent);
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                            finish();
                         } else {
                             showCustomToast("로그인에 실패했어요\n아이디나 비밀번호를 확인해주세요");
                         }
