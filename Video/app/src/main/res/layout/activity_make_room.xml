@@ -225,7 +225,7 @@
         android:id="@+id/makebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_corner"
+        android:background="@drawable/custom_ripple_effect"
         android:backgroundTint="#425276"
         android:paddingHorizontal="35dp"
         android:paddingVertical="10dp"
