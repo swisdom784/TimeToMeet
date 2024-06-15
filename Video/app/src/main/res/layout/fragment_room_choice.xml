@@ -13,56 +13,58 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="Choose Your Time"
         android:textSize="30sp"
         android:fontFamily="@font/bagel_fat_one_regular"/>
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="20dp">
-        <ScrollView
+        <LinearLayout
+            android:id="@+id/everytime"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/day_list"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                android:gravity="center"
+                android:text="time"
+                android:textSize="24sp"
+                android:textColor="@color/colorYlnMnBlue"
+                android:fontFamily="@font/bagel_fat_one_regular" />
+            <LinearLayout
+                android:id="@+id/my_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
                 <LinearLayout
-                    android:id="@+id/everytime"
+                    android:id="@+id/day_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="time"
-                        android:textSize="24sp"
-                        android:textColor="@color/colorYlnMnBlue"
-                        android:fontFamily="@font/bagel_fat_one_regular" />
+                    android:orientation="horizontal">
                     <LinearLayout
-                        android:id="@+id/my_time"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/my_time_layout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical" />
+                        android:orientation="vertical">
+                    </LinearLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/my_time_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-    </HorizontalScrollView>
+            </ScrollView>
+        </HorizontalScrollView>
+    </LinearLayout>
 
     <TextView
         android:layout_width="0dp"
