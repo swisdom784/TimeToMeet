@@ -98,7 +98,7 @@
             android:backgroundTint="@color/colorCoolPink"
             android:fontFamily="@font/mainfont01"
             android:text="방 입장하기"
-            android:textColor="@color/gray"
+            android:textColor="@color/white"
             android:textSize="25dp" />
 
 

@@ -63,18 +63,24 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
                 android:id="@+id/erasebtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:paddingHorizontal="14dp"
-                android:paddingVertical="5dp"
-                android:background="@drawable/round"
+                android:paddingHorizontal="23dp"
+                android:paddingVertical="8dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/custom_ripple_effect"
                 android:backgroundTint="#425276"
-                android:fontFamily="@font/bagel_fat_one_regular"
+                android:fontFamily="@font/mainfont01"
                 android:text="삭제"
                 android:textColor="#F4F6FA"
-                android:textSize="15dp" />
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -117,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/round"
+                android:background="@drawable/custom_ripple_effect"
                 android:backgroundTint="#425276"
                 android:fontFamily="@font/mainfont01"
                 android:paddingHorizontal="20dp"
@@ -134,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:background="@drawable/round"
+                android:background="@drawable/custom_ripple_effect"
                 android:backgroundTint="#425276"
                 android:fontFamily="@font/mainfont01"
                 android:paddingHorizontal="20dp"
