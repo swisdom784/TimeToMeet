@@ -7,38 +7,6 @@
     android:background="#9DB6D1"
     tools:context=".RegisterActivity">
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/titleBox"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView"-->
-<!--            android:layout_width="70dp"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:contentDescription="TODO"-->
-<!--            app:srcCompat="@drawable/logo01" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="10dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:fontFamily="@font/bagel_fat_one_regular"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:shadowColor="#507587B2"-->
-<!--            android:shadowRadius="20"-->
-<!--            android:text="Sign Up"-->
-<!--            android:textColor="#F4F6FA"-->
-<!--            android:textSize="60sp"-->
-<!--            android:textStyle="normal" />-->
-<!--    </LinearLayout>-->
 
     <TextView
         android:id="@+id/textView"
