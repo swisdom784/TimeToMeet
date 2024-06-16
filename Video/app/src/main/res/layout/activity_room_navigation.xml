@@ -6,13 +6,21 @@
     android:layout_height="match_parent"
     android:background="@color/colorAliceBlue"
     tools:context=".RoomNavigationActivity">
+
+    <ImageView
+        android:id="@+id/back_to_home"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/back_mnblue"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"/>
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
-        android:background="@color/colorAliceBlue"
+
         android:gravity="center"
         android:text="Room Name"
         android:textColor="@color/colorYlnMnBlue"

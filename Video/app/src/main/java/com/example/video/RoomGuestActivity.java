@@ -52,11 +52,16 @@ public class RoomGuestActivity extends AppCompatActivity {
     ValueEventListener valueEventListener;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_guest);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         Intent i = getIntent();
         String username = i.getStringExtra("username");
         user = username;
