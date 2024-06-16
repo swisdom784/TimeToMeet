@@ -37,10 +37,10 @@
                 android:id="@+id/back_to_home2"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/back"
-                android:layout_marginStart="5dp"
+                android:src="@drawable/btn_logout"
+                android:layout_marginEnd="5dp"
                 android:layout_marginTop="5dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/textView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <LinearLayout
