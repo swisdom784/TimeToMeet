@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -52,6 +53,7 @@ public class RoomGuestActivity extends AppCompatActivity {
     ValueEventListener valueEventListener;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    ImageView iv_back;
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -144,6 +146,13 @@ public class RoomGuestActivity extends AppCompatActivity {
             }
         });
 
+        iv_back = findViewById(R.id.back_to_room);
+        iv_back.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onBackPressed();
+            }
+        });
     }//onCreate
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams){
         TextView newTime = new TextView(this);

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RoomNavigationActivity extends AppCompatActivity {
     TextView tv_name,tv_password;
+    ImageView iv_back;
     DatabaseReference databaseReference;
     String user_name;
     int room_num = 0;
@@ -55,6 +58,13 @@ public class RoomNavigationActivity extends AppCompatActivity {
         setNavigationBar();
 
         // 첫 화면 설정 -> loadFromDatabase 안에
+        iv_back = findViewById(R.id.back_to_home);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
