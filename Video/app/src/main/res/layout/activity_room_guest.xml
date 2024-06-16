@@ -29,50 +29,47 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="40dp"
-            android:layout_marginHorizontal="20dp">
-
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <LinearLayout
-                android:id="@+id/everytime"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginRight="10dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/name">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="time"
-                    android:textSize="24sp"
-                    android:textColor="@color/colorYlnMnBlue"
-                    android:fontFamily="@font/bagel_fat_one_regular" />
+                android:orientation="horizontal"
+                android:layout_marginTop="40dp"
+                android:layout_marginHorizontal="20dp">
 
                 <LinearLayout
-                    android:id="@+id/my_time"
+                    android:id="@+id/everytime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/name">
 
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@id/everytime"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/name">
+                    <TextView
+                        android:layout_width="185px"
+                        android:layout_height="112px"
+                        android:gravity="center"
+                        android:text="time"
+                        android:textSize="22sp"
+                        android:textColor="@color/colorYlnMnBlue"
+                        android:fontFamily="@font/bagel_fat_one_regular" />
 
-                <ScrollView
+                    <LinearLayout
+                        android:id="@+id/my_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </LinearLayout>
+
+                <HorizontalScrollView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/everytime"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/name">
                     <LinearLayout
                         android:id="@+id/day_list"
                         android:layout_width="wrap_content"
@@ -85,9 +82,9 @@
                             android:orientation="vertical">
                         </LinearLayout>
                     </LinearLayout>
-                </ScrollView>
-            </HorizontalScrollView>
-        </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+        </ScrollView>
         </LinearLayout>
 
     <ImageView

@@ -127,10 +127,7 @@ public class RoomGuestActivity extends AppCompatActivity {
                     day_text.setGravity(Gravity.CENTER);
                     day_text.setTypeface(ResourcesCompat.getFont(getApplicationContext(),R.font.bagel_fat_one_regular));
                     day_text.setTextColor(getResources().getColor(R.color.colorYlnMnBlue));
-                    int padding = 3;
-                    int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,padding,getResources().getDisplayMetrics());
-                    day_text.setPadding(0,0,0,paddingpx);
-
+                    day_text.setLayoutParams(btnParams);
                     my_time_text.addView(day_text);
                     for(int ii = startTime;ii<=endTime;ii++){
                         TextView tv_btn = makeBtn(ii,btnParams);
@@ -157,13 +154,11 @@ public class RoomGuestActivity extends AppCompatActivity {
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams){
         TextView newTime = new TextView(this);
         newTime.setText(new StringBuilder().append(i).append("시"));
-        newTime.setGravity(Gravity.RIGHT);
+        newTime.setGravity(Gravity.CENTER);
         newTime.setTextSize(22);
         newTime.setTypeface(ResourcesCompat.getFont(getApplicationContext(),R.font.bagel_fat_one_regular));
         newTime.setTextColor(getResources().getColor(R.color.colorYlnMnBlue));
-        int padding = 4;
-        int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,padding,getResources().getDisplayMetrics());
-        newTime.setPadding(15,paddingpx,0,paddingpx);
+        newTime.setLayoutParams(timeParams);
         return newTime;
     }
     int a;
@@ -174,10 +169,6 @@ public class RoomGuestActivity extends AppCompatActivity {
         TextView newBtn = new TextView(this);
         newBtn.setLayoutParams(btnParams);
         newBtn.setTag(weight.get(a));
-//        if(weight.get(a) == 0)
-//            newBtn.setBackgroundColor(Color.WHITE);
-//        else
-//            newBtn.setBackgroundColor(Color.BLUE);
         // 테두리 모양 생성
         GradientDrawable border = new GradientDrawable();
         if(weight.get(a) == 0)

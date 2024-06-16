@@ -168,6 +168,7 @@ public class RoomChoiceFragment extends Fragment {
             day_text.setText(day);
             day_text.setTextSize(22);
             day_text.setGravity(Gravity.CENTER);
+            day_text.setLayoutParams(btnParams);
             day_text.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bagel_fat_one_regular));
             day_text.setTextColor(ContextCompat.getColor(getContext(), R.color.colorYlnMnBlue));
             int padding = 3;
@@ -187,13 +188,11 @@ public class RoomChoiceFragment extends Fragment {
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams){
         TextView newTime = new TextView(getContext());
         newTime.setText(new StringBuilder().append(i).append("시"));
-        newTime.setGravity(Gravity.RIGHT);
+        newTime.setGravity(Gravity.CENTER);
         newTime.setTextSize(22);
         newTime.setTypeface(ResourcesCompat.getFont(getContext(),R.font.bagel_fat_one_regular));
         newTime.setTextColor(getResources().getColor(R.color.colorYlnMnBlue));
-        int padding = 4;
-        int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,padding,getResources().getDisplayMetrics());
-        newTime.setPadding(15,paddingpx,0,paddingpx);
+        newTime.setLayoutParams(timeParams);
         return newTime;
     }
     int a;

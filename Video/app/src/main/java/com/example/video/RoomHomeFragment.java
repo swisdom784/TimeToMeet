@@ -147,6 +147,7 @@ public class RoomHomeFragment extends Fragment {
             day_text.setGravity(Gravity.CENTER);
             day_text.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bagel_fat_one_regular));
             day_text.setTextColor(ContextCompat.getColor(getContext(), R.color.colorYlnMnBlue));
+            day_text.setLayoutParams(btnParams);
             int padding = 3;
             int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, padding, getResources().getDisplayMetrics());
             day_text.setPadding(0, 0, 0, paddingpx);
@@ -163,13 +164,14 @@ public class RoomHomeFragment extends Fragment {
     public TextView makeTimeText(int i, LinearLayout.LayoutParams timeParams) {
         TextView newTime = new TextView(getContext());
         newTime.setText(new StringBuilder().append(i).append("시"));
-        newTime.setGravity(Gravity.RIGHT);
+        newTime.setGravity(Gravity.CENTER);
         newTime.setTextSize(22);
         newTime.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bagel_fat_one_regular));
         newTime.setTextColor(ContextCompat.getColor(getContext(), R.color.colorYlnMnBlue));
-        int padding = 4;
-        int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, padding, getResources().getDisplayMetrics());
-        newTime.setPadding(15, paddingpx, 0, paddingpx);
+        newTime.setLayoutParams(timeParams);
+//        int padding = 4;
+//        int paddingpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, padding, getResources().getDisplayMetrics());
+//        newTime.setPadding(15, paddingpx, 0, paddingpx);
         return newTime;
     }
 
