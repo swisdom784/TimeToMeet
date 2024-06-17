@@ -66,7 +66,7 @@ public class EntranceActivity extends AppCompatActivity {
                 password = findViewById(R.id.password);
                 String p = password.getText().toString();
                 if(p.isEmpty()){
-                    showCustomToast("비밀번호를 입력하세요\n비밀번호는 16자리입니다");
+                    showCustomToast("입장 코드를 입력하세요\n입장 코드는 16자리입니다");
                     return;
                 }
 
@@ -83,7 +83,7 @@ public class EntranceActivity extends AppCompatActivity {
                                     }
                                 }
                                 if(flag[0] == 0){
-                                    showCustomToast("비밀번호가 일치하지 않습니다");
+                                    showCustomToast("입장 코드가 일치하지 않습니다");
                         } else {
                             if(!roomList.contains(flag[0])) roomList.add(flag[0]);
                             FirebaseDatabase.getInstance().getReference("UserAccount").child(id).child("roomList").setValue(roomList);
