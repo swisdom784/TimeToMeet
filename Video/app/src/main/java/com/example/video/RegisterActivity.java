@@ -131,6 +131,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = mEtPwd.getText().toString().trim();
                 String name = mEtName.getText().toString().trim();
 
+                for(String k: nickname){
+                    if(strName.equals(k)){
+                        nameCheck.setText("이미 존재하는 닉네임입니다");
+                        return;
+                    }
+                }
+
                 if (email.isEmpty()) {
                     mEtEmail.setError("Email is required");
                     mEtEmail.requestFocus();
@@ -147,13 +154,6 @@ public class RegisterActivity extends AppCompatActivity {
                     mEtName.setError("Name is required");
                     mEtName.requestFocus();
                     return;
-                }
-
-                for(String k: nickname){
-                    if(strName.equals(k)){
-                        nameCheck.setText("이미 존재하는 닉네임입니다");
-                        return;
-                    }
                 }
                 mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -177,12 +177,12 @@ public class RegisterActivity extends AppCompatActivity {
                             String errorMessage;
                             try {
                                 throw task.getException();
+                            } catch (FirebaseAuthUserCollisionException e) {
+                                errorMessage = "이미 존재하는 이메일입니다";
                             } catch (FirebaseAuthWeakPasswordException e) {
                                 errorMessage = "비밀번호를 6자리 이상 입력해주세요";
                             } catch (FirebaseAuthInvalidCredentialsException e) {
                                 errorMessage = "이메일 형식이 올바르지 않습니다";
-                            } catch (FirebaseAuthUserCollisionException e) {
-                                errorMessage = "이미 존재하는 이메일입니다";
                             } catch (Exception e) {
                                 errorMessage = "회원가입에 실패했습니다";
                             }
