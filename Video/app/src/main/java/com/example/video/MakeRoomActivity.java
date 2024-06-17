@@ -202,8 +202,8 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
                 }if(days.get("endday")-days.get("startday") >= 21){
                     showCustomToast("모임 날짜를 20일 안으로 선택하세요");
                     return;
-                }if(time.get("endhour") - time.get("starthour") > 10){
-                    showCustomToast("모임 시간을 10시간 안으로 선택하세요");
+                }if(time.get("endhour") - time.get("starthour") > 16){
+                    showCustomToast("모임 시간을 15시간 안으로 선택하세요");
                     return;
                 }if(days.get("startday") >= days.get("endday")){
                         showCustomToast("시작 날짜는 종료 날짜보다 같거나 클 수 없습니다");
@@ -214,10 +214,11 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
                 }
 
                 String room_name = roomName.getText().toString();
-                if(room_name.isEmpty()){
+                if(room_name == null || room_name.isEmpty()){
                     showCustomToast("방 이름을 입력해주세요");
                     return;
                 }
+
                 if(room_name.length()>19){
                     showCustomToast("방 이름은 18자 이내로만 가능합니다");
                     return;
@@ -233,7 +234,7 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
                 Map<String, Object> s = new HashMap<>();
                 s.put(username, weight);
 
-                r.setname(room_name);
+                r.setname(room_name.trim());
                 r.setPassword(HashKeyGenerator.generateRandomHashKey());
                 r.setOwner(username);
                 r.setGuest(s);
