@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAliceBlue"
@@ -9,52 +10,57 @@
     <!-- 전체 -->
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:layout_marginBottom="40dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp">
+            android:orientation="vertical">
             <LinearLayout
-                android:id="@+id/everytime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="185px"
-                    android:layout_height="112px"
-                    android:gravity="center"
-                    android:text="time"
-                    android:textSize="22sp"
-                    android:fontFamily="@font/bagel_fat_one_regular"
-                    android:textColor="@color/colorYlnMnBlue"/>
-                <LinearLayout
-                    android:id="@+id/my_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </LinearLayout>
-
-            <!-- room의 시간 -->
-            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
                 <LinearLayout
-                    android:id="@+id/day_list"
+                    android:id="@+id/everytime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="185px"
+                        android:layout_height="112px"
+                        android:gravity="center"
+                        android:text="time"
+                        android:textSize="22sp"
+                        android:fontFamily="@font/bagel_fat_one_regular"
+                        android:textColor="@color/colorYlnMnBlue"/>
                     <LinearLayout
-                        android:id="@+id/my_time_layout"
-                        android:layout_width="match_parent"
+                        android:id="@+id/my_time"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                    </LinearLayout>
+                        android:orientation="vertical" />
                 </LinearLayout>
-            </HorizontalScrollView>
+
+                <!-- room의 시간 -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/day_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/my_time_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                        </LinearLayout>
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
