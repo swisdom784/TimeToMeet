@@ -109,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+
         mDatabaseRef.child("userNickname").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -137,6 +138,7 @@ public class RegisterActivity extends AppCompatActivity {
                         return;
                     }
                 }
+             nameCheck.setVisibility(View.INVISIBLE);
 
                 if (email.isEmpty()) {
                     mEtEmail.setError("Email is required");
