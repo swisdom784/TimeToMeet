@@ -124,9 +124,9 @@ public class RegisterActivity extends AppCompatActivity {
         mEtnRegister.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String strEmail = mEtEmail.getText().toString();
-                String strPwd = mEtPwd.getText().toString();
-                String strName = mEtName.getText().toString();
+                String strEmail = mEtEmail.getText().toString().trim();
+                String strPwd = mEtPwd.getText().toString().trim();
+                String strName = mEtName.getText().toString().trim();
 
                 String email = mEtEmail.getText().toString().trim();
                 String password = mEtPwd.getText().toString().trim();
