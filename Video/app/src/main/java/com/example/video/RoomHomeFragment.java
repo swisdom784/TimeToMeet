@@ -53,8 +53,9 @@ public class RoomHomeFragment extends Fragment {
     final int[] meet = new int[10];
     int startDay = 1, endDay = 4, startTime = 7, endTime = 11;
     List<Integer> sum = new ArrayList<>();
-
     Map<String,Object> guest = new HashMap<>();
+    TextView max_people;
+    int people_cnt;
 
     public RoomHomeFragment() {
         // Required empty public constructor
@@ -85,6 +86,7 @@ public class RoomHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_room_home, container, false);
         my_time = view.findViewById(R.id.my_time);
         day_list = view.findViewById(R.id.day_list);
+        max_people = view.findViewById(R.id.max_people);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         loadDataFromDatabase();
@@ -121,6 +123,9 @@ public class RoomHomeFragment extends Fragment {
         startTime = meet[4];
         endTime = meet[5];
         guest = r.getGuest();
+        people_cnt = guest.size();
+        max_people.setText(new StringBuilder().append(people_cnt).append("명"));
+
         LinearLayout.LayoutParams dayparams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -182,7 +187,7 @@ public class RoomHomeFragment extends Fragment {
         newBtn.setLayoutParams(btnParams);
         Resources res = getResources();
         int max_val;
-        max_val = Collections.max(sum);
+        max_val = people_cnt;
         int btn_val = sum.get(a);
         double btn_color = (double) btn_val * (1 / (double) max_val);
         int red_diff = 0xFF - 0x2E;
