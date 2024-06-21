@@ -40,6 +40,7 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        finish();
         overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
     }
 

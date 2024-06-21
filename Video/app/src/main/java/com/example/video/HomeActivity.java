@@ -182,6 +182,7 @@ public class HomeActivity extends AppCompatActivity {
                         intent.putExtra("username",name[0]);
                         intent.putExtra("room_num",hlAdapter.getItem(position).getRoomNum());
                         startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in, R.anim.none);
                     }
                 });
             }

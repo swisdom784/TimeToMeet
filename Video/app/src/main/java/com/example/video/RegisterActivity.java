@@ -42,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        finish();
         overridePendingTransition(R.anim.none, R.anim.horizontal_exit);
     }
     @Override
