@@ -19,6 +19,24 @@ public class room {
     private Map<String,Integer> time = new HashMap<>();
     private List<Integer> sum = new ArrayList<>();
     private List<HashMap<String,String>> messageList = new ArrayList<>();
+    private HashMap<String,String> fixedMemo = new HashMap<>();
+    private boolean isFixed = false;
+
+    public HashMap<String, String> getFixedMemo() {
+        return fixedMemo;
+    }
+
+    public void setFixedMemo(HashMap<String, String> fixedMemo) {
+        this.fixedMemo = fixedMemo;
+    }
+
+    public boolean isFixed() {
+        return isFixed;
+    }
+
+    public void setFixed(boolean fixed) {
+        isFixed = fixed;
+    }
 
     public List<HashMap<String, String>> getMessageList() {
         return messageList;

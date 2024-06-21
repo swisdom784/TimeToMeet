@@ -241,6 +241,8 @@ public class MakeRoomActivity extends AppCompatActivity implements DatePickerLis
                 r.setDay(days);
                 r.setTime(time);
                 r.setSum(sum);
+                r.setFixed(false);
+                r.setFixedMemo(null);
                 mdatabase.setValue(room_num[0] + 1);
                 mdatabase = FirebaseDatabase.getInstance().getReference("room");
                 mdatabase.child(String.valueOf(room_num[0] + 1)).setValue(r);
